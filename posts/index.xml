@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Tryam</title>
+    <link>https://example.com/posts/</link>
+    <description>Recent content in Posts on Tryam</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Apr 2020 15:05:55 +0800</lastBuildDate>
+    
+	<atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hello, it&#39;s Tryam</title>
+      <link>https://example.com/2020/tryam/</link>
+      <pubDate>Wed, 01 Apr 2020 15:05:55 +0800</pubDate>
+      
+      <guid>https://example.com/2020/tryam/</guid>
+      <description>Self introduction 各位前辈好，我叫秦士耀，来自上海交通大学，目前设计学研一在读，下半年即将研二，预计2021年3月毕业，导师的研究方向主要是工业设计，交互设计和设计计算，所以这些方面都有一些接触。本科在浙江大学读的建筑设计。之前有在地产和软件公司实习的实习经历。
+some questions about me Why change majors 一方面是当时建筑整个行业式微，身边有很多学长学姐和同学考虑转专业；另一方面，我发现自己其实喜欢建筑的部分，是它直接影响人们的居住方式进而影响生活方式。而建筑本身是个很庞大的产业，建筑设计师需要平衡的东西很多，不像我们交互那样关注用户。而建筑又是一个很讲究经验和积累的行业，单单本科毕业的话，在这个系统里可能需要很长的时间才能成为有一定话语权的设计师。所以我大概有一半的同学都选择去欧美名校深造了。
+我觉得自己是有点理想和浪漫主义的人。对建筑设计是有梦想的，设计的结果能直接影响人的生活方式，不过实际当时在选择保研还是工作的时候，发现建筑行业目前还是比较传统，互联网化的程度也比较低，不管是去地产还是设计院，感觉有很大的精力是在这个巨大的系统里面周转，接触不到实际的用户，其实价值感有些缺失。
+How to understand Interaction design? 传统的产品设计的核心是围绕产品的功能外观，核心点是产品本身，而交互设计则转变视角，将聚焦点转移到人和产品的关系上来，关心人是怎么使用，在什么场景下使用产品的，努力去优化使用流程，使用体验。这二者的差异在于是否关注到用户，是否跳脱出产品本身，二者的差异某种程度上可以理解为焦距大小的差异，产品设计到交互设计是一个由点及线的过程，也是一个由静到动的过程。</description>
+    </item>
+    
+    <item>
+      <title>Mac terminal 学习笔记</title>
+      <link>https://example.com/2020/mac_terminal_learning/</link>
+      <pubDate>Wed, 01 Apr 2020 15:05:55 +0800</pubDate>
+      
+      <guid>https://example.com/2020/mac_terminal_learning/</guid>
+      <description>终端是连接内核和交互界面的桥梁，通过终端，用户可以间接控制系统内核。命令的组成包括命令对象，修饰命令和命令内容等。
+常见命令  路径分为相对路径和绝对路径。 【/文件夹名/文件夹名】 绝对路径，【./文件夹】 相对路径。 pwd 显示当前路径； cd 进入某个文件夹； cd ~回到根目录； cd .. 回退到上一个文件夹；cd ./文件夹名 进入下一个文件夹。 “~” 也表示为 home 目录 的意思， ”.” 则是表示目前所在的目录，”..” 则表示目前目录位置的上一层目录。 ls 显示此路径下所有文件；ls -R 显示当前路径下展开子文件夹的内容(注意是大写R)； clear 清屏 man + 指令名查看该指令的用法；q 退出说明。 control + c 停止当前进程  常见用法  killall + 应用程序名 强退某个进程 caffeinate 让电脑时刻保持清醒 touch -t 202003102346 文件绝对路径 更改文件的修改时间(实测发现创建时间和修改时间不同的无法修改) defaults write com.apple.screencapture type jpg 更改截屏的默认格式； defaults write com.apple.screencapture disable-shadow -bool true; killall SystemUIServer defaults write com.</description>
+    </item>
+    
+  </channel>
+</rss>

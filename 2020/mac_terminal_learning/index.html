@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noodp"/>
+  <meta name="author" content="Tryam">
+  
+  
+  
+  
+  <link rel="next" href="https://example.com/2020/tryam/" />
+  <link rel="canonical" href="https://example.com/2020/mac_terminal_learning/" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+  <title>
+       
+       
+           Mac terminal 学习笔记 | Tryam
+       
+  </title>
+  <meta name="title" content="Mac terminal 学习笔记 | Tryam">
+    
+  
+  <link rel="stylesheet" href="/font/iconfont.css">
+  <link rel="stylesheet" href="/css/main.min.css">
+
+
+  
+  
+ 
+
+<script type="application/ld+json">
+ "@context" : "http://schema.org",
+    "@type" : "BlogPosting",
+    "mainEntityOfPage": {
+         "@type": "WebPage",
+         "@id": "https:\/\/example.com"
+    },
+    "articleSection" : "posts",
+    "name" : "Mac terminal 学习笔记",
+    "headline" : "Mac terminal 学习笔记",
+    "description" : "终端是连接内核和交互界面的桥梁，通过终端，用户可以间接控制系统内核。命令的组成包括命令对象，修饰命令和命令内容等。\n常见命令  路径分为相对路径和绝对路径。 【\/文件夹名\/文件夹名】 绝对路径，【.\/文件夹】 相对路径。 pwd 显示当前路径； cd 进入某个文件夹； cd ~回到根目录； cd .. 回退到上一个文件夹；cd .\/文件夹名 进入下一个文件夹。 “~” 也表示为 home 目录 的意思， ”.” 则是表示目前所在的目录，”..” 则表示目前目录位置的上一层目录。 ls 显示此路径下所有文件；ls -R 显示当前路径下展开子文件夹的内容(注意是大写R)； clear 清屏 man \x2b 指令名查看该指令的用法；q 退出说明。 control \x2b c 停止当前进程  常见用法  killall \x2b 应用程序名 强退某个进程 caffeinate 让电脑时刻保持清醒 touch -t 202003102346 文件绝对路径 更改文件的修改时间(实测发现创建时间和修改时间不同的无法修改) defaults write com.apple.screencapture type jpg 更改截屏的默认格式； defaults write com.apple.screencapture disable-shadow -bool true; killall SystemUIServer defaults write com.",
+    "inLanguage" : "en-us",
+    "author" : "Tryam",
+    "creator" : "Tryam",
+    "publisher": "Tryam",
+    "accountablePerson" : "Tryam",
+    "copyrightHolder" : "Tryam",
+    "copyrightYear" : "2020",
+    "datePublished": "2020-04-01 15:05:55 \x2b0800 CST",
+    "dateModified" : "2020-04-01 15:05:55 \x2b0800 CST",
+    "url" : "https:\/\/example.com\/2020\/mac_terminal_learning\/",
+    "wordCount" : "133",
+    "keywords" : [  "Tryam"]
+}
+</script>
+
+</head>
+
+  
+
+
+  <body class="">
+    <div class="wrapper">
+        <nav class="navbar">
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://example.com">Tryam</a>
+        </div>
+        <div class="menu navbar-right">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/portfolio/" title="">Portfolio</a>
+                
+                <a class="menu-item" href="/about/" title="About Tryam">About Tryam</a>
+                
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
+     <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-xihuan"></i></a>&nbsp;<a href="https://example.com">Tryam</a></div>
+            <div class="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+     
+          <div class="menu" id="mobile-menu">
+                
+                
+                <a class="menu-item" href="/posts/" title="">Blog</a>
+                
+                <a class="menu-item" href="/portfolio/" title="">Portfolio</a>
+                
+                <a class="menu-item" href="/about/" title="About Tryam">About Tryam</a>
+                
+        </div>
+    </div>
+</nav>
+    	 <main class="main">
+          <div class="container">
+      		
+<article class="post-warp" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">Mac terminal 学习笔记</h1>
+        <div class="post-meta">
+                Written by <a itemprop="name" href="https://example.com" rel="author">Tryam</a> with ♥ 
+                <span class="post-time">
+                on <time datetime=2020-04-01 itemprop="datePublished">April 1, 2020</time>
+                </span>
+                in
+                
+        </div>
+    </header>
+    <div class="post-content">
+        
+
+        
+            
+        
+
+        
+        
+     
+          
+          
+          
+
+          
+          
+          
+
+          
+
+<p>终端是连接内核和交互界面的桥梁，通过终端，用户可以间接控制系统内核。命令的组成包括命令对象，修饰命令和命令内容等。</p>
+
+<p><figure><img src="/images/ring.svg" data-sizes="auto" data-src="/images/Mac_terminal_learning/command_consist.png" alt="image" class="lazyload"><figcaption class="image-caption">image</figcaption></figure></p>
+
+<h1 id="常见命令">常见命令</h1>
+
+<ol>
+<li>路径分为相对路径和绝对路径。 【/文件夹名/文件夹名】 绝对路径，【./文件夹】 相对路径。</li>
+<li>pwd 显示当前路径；</li>
+<li>cd 进入某个文件夹； cd ~回到根目录； cd  .. 回退到上一个文件夹；cd ./文件夹名 进入下一个文件夹。
+      “~” 也表示为 home 目录 的意思， ”.” 则是表示目前所在的目录，”..” 则表示目前目录位置的上一层目录。</li>
+<li>ls 显示此路径下所有文件；ls -R 显示当前路径下展开子文件夹的内容(注意是大写R)；</li>
+<li>clear 清屏</li>
+<li>man + 指令名查看该指令的用法；q 退出说明。</li>
+<li>control + c 停止当前进程</li>
+</ol>
+
+<h1 id="常见用法">常见用法</h1>
+
+<ol>
+<li>killall + 应用程序名 强退某个进程</li>
+<li>caffeinate 让电脑时刻保持清醒</li>
+<li>touch -t 202003102346 文件绝对路径 更改文件的修改时间(实测发现创建时间和修改时间不同的无法修改)</li>
+<li>defaults write com.apple.screencapture type jpg 更改截屏的默认格式； defaults write com.apple.screencapture disable-shadow -bool true; killall SystemUIServer</li>
+<li>defaults write com.apple.finder AppleShowAllFiles -bool true; killall Finder 显示隐藏文件夹</li>
+<li>defaults write com.apple.dock persistent-apps -array-add ‘{“tile-type”=“spacer-tile”;}’; killall Dock 为dock增加空白dock栏</li>
+<li>textutil -convert txt 文件名称 ，这句指令允许你将任何文件，在以下文件格式中互相转换 txt, html, rtf, rtfd, doc, docx, wordml, odt, webarchive。</li>
+<li>mv移动文件；mkdir创建目录；cat显示文件内容</li>
+<li>echo + something 是在屏幕上打印某些内容 echo ‘* - nofile 65535’ &gt;&gt; /etc/security/limits.conf  will append - nofile 65535### to the end of the /etc/security/limits.conf### file, instead of printing - nofile 65535### on the screen.</li>
+</ol>
+
+<h3 id="参考链接">参考链接</h3>
+
+<ol>
+<li><a href="https://www.cnblogs.com/peida/archive/2012/12/05/2803591.html" rel="nofollow noreferrer" target="_blank">每天一个linux链接</a></li>
+<li><a href="https://sspai.com/post/45534" rel="nofollow noreferrer" target="_blank">玩转Terminal入门</a></li>
+</ol>
+
+    </div>
+
+    <div class="post-copyright">
+             
+            <p class="copyright-item">
+                <span>Author:</span>
+                <span>Tryam </span>
+                </p>
+            
+           
+             
+            <p class="copyright-item">
+                    <span>Link:</span>
+                    <a href=https://example.com/2020/mac_terminal_learning/>https://example.com/2020/mac_terminal_learning/</span>
+            </p>
+            
+            
+    </div>
+
+  
+    <div class="post-tags">
+        
+        <section>
+                <a href="javascript:window.history.back();">back</a></span> · 
+                <span><a href="https://example.com">home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+         
+        
+        <a href="https://example.com/2020/tryam/" class="next" rel="next" title="Hello, it&#39;s Tryam">Hello, it&#39;s Tryam&nbsp;<i class="iconfont icon-right"></i></a>
+        
+    </div>
+
+    <div class="post-comment">
+          
+                 
+          
+    </div>
+</article>
+          </div>
+		   </main>
+      <footer class="footer">
+    <div class="copyright">
+        &copy;
+        
+        <span class="with-love">
+    	 <i class="iconfont icon-love"></i> 
+         </span>
+         
+            <span class="author" itemprop="copyrightHolder"><a href="https://example.com">Tryam</a> | </span> 
+         
+
+         
+		  <span>Powered by <a href="https://gohugo.io/" target="_blank" rel="external nofollow">Hugo</a> & <a href="https://github.com/liuzc/leaveit" target="_blank" rel="external nofollow">LeaveIt</a></span> 
+    </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     <link href="//lib.baomitu.com/lightgallery/1.6.11/css/lightgallery.min.css" rel="stylesheet">  
+      
+     <script src="/js/vendor_gallery.min.js" async="" ></script>
+    
+  
+
+
+
+     </div>
+  </body>
+</html>
