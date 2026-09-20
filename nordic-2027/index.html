@@ -13,11 +13,15 @@
   <link rel="canonical" href="https://tryamedicine.github.io/nordic-2027/">
   <title>2027 北欧冬日行 · Stockholm · Lofoten · Iceland</title>
   <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css?v=20260920-2">
-  <script defer src="./map-controls.js?v=20260920-2"></script>
+  <link rel="stylesheet" href="./style.css?v=20260920-3">
+  <link rel="stylesheet" href="./assets/maplibre-gl.css">
+  <script defer src="./assets/maplibre-gl.js"></script>
+  <script defer src="./map-controls.js?v=20260920-3"></script>
+  <script defer src="./place-info.js?v=20260920-3"></script>
+  <script defer src="./map-experience.js?v=20260920-3"></script>
   <script defer src="./data.js"></script>
   <script defer src="./assets/geography.js"></script>
-  <script defer src="./app.js?v=20260920-2"></script>
+  <script defer src="./app.js?v=20260920-3"></script>
 </head>
 <body>
 <a class="skip" href="#itinerary">跳到每日行程</a>
@@ -61,21 +65,25 @@
   <section class="itinerary-section" id="itinerary" aria-labelledby="itinerary-heading">
     <div class="wrap">
       <div class="section-heading"><div class="section-kicker"><span>02 / DAY BY DAY</span><h2 id="itinerary-heading">每天，都有一个好去处。</h2></div><p>沿着地图，把14天慢慢展开。</p></div>
+      <div id="map-workspace" aria-label="北欧行程地图">
       <div class="region-tabs" id="regions" role="group" aria-label="选择旅行区域"></div>
       <div class="day-strip" id="day-tabs" role="group" aria-label="选择日期"></div>
       <div class="travel-board">
         <div class="map-column">
-          <div class="map-heading"><div><span class="eyebrow" id="map-overline">LOFOTEN</span><h3 id="map-title">雪山、渔村与北大西洋</h3></div><button id="reset-map" type="button" aria-label="重新显示当前完整路线">回到路线 <span aria-hidden="true">↗</span></button></div>
+          <div class="map-heading"><div><span class="eyebrow" id="map-overline">LOFOTEN</span><h3 id="map-title">雪山、渔村与北大西洋</h3></div><div class="map-actions"><button id="map-places" type="button">地点列表</button><button id="map-fullscreen" type="button" aria-expanded="false">全屏地图 ⤢</button><button id="reset-map" type="button" aria-label="重新显示当前完整路线">回到路线 <span aria-hidden="true">↗</span></button></div></div>
           <div class="map-stage" id="map-stage">
             <div id="fallback-map" tabindex="0" role="region" aria-label="互动行程示意图" aria-describedby="map-help"></div>
+            <div id="map" aria-label="可缩放的真实地理地图"></div>
             <div class="map-zoom" role="group" aria-label="地图缩放"><button id="zoom-in" type="button" aria-label="放大地图">＋</button><button id="zoom-out" type="button" aria-label="缩小地图">−</button></div>
-            <div class="map-mode"><span>路线示意</span><output id="map-scale" aria-label="地图缩放比例">100%</output></div>
+            <div class="map-mode"><span id="map-status">路线示意</span><button id="map-mode-toggle" type="button">真实底图</button><output id="map-scale" aria-label="地图缩放比例">100%</output></div>
           </div>
           <div class="map-legend"><span><i class="sight"></i>景点</span><span><i class="stay"></i>建议住宿区域</span><span><i class="airport"></i>机场</span><span><i class="paid"></i>可选付费</span></div>
-          <p class="map-help" id="map-help">双指或滚轮缩放 · 拖动查看 · 也可使用 ＋ / −</p>
+          <p class="map-help" id="map-help">双指或滚轮缩放 · 拖动查看 · 点击地点了解详情</p>
           <p class="map-note">虚线表示行程顺序，不作驾驶导航。住宿点为建议区域，具体房源待选。</p>
         </div>
         <aside class="day-detail" id="day-detail" aria-live="polite" aria-label="当前行程详情"></aside>
+      </div>
+      <dialog id="place-dialog" aria-labelledby="place-title"><div class="place-page-top"><span>TRAVEL NOTES / 地点详情</span><button id="close-place" type="button" aria-label="关闭地点详情">关闭 ×</button></div><div id="place-content"></div></dialog>
       </div>
       <details class="all-days"><summary>完整14天行程表 <span aria-hidden="true">＋</span></summary><div id="full-itinerary"></div></details>
       <noscript><p>互动地图需要启用JavaScript。路线：1/30–1/31斯德哥尔摩；2/1 EVE抵达；2/2群岛东中部；2/3西部；2/4返EVE；2/5抵达冰岛；2/6黄金圈；2/7南岸至Vík；2/8冰川；2/9冰河湖后返西；2/10回Keflavík；2/11回国；2/12抵达上海。</p></noscript>
@@ -97,7 +105,7 @@
     </div>
   </section>
 </main>
-<footer class="wrap"><div><strong>2027 北欧冬日行</strong><p>路线已确定，酒店与活动待选。<br>旅途随天气灵活调整。</p></div><div class="credits"><p>整理于 2026.09.20</p><p>摄影 <a href="https://commons.wikimedia.org/wiki/File:Hamnoy_-_Lofoten,_Norway_-_Seascape_photography_(49568951078).jpg" target="_blank" rel="noopener">Giuseppe Milo / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a> · 画面裁切</p><p>地理示意底图：<a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth</a></p></div></footer>
+<footer class="wrap"><div><strong>2027 北欧冬日行</strong><p>路线已确定，酒店与活动待选。<br>旅途随天气灵活调整。</p></div><div class="credits"><p>整理于 2026.09.20</p><p>摄影 <a href="https://commons.wikimedia.org/wiki/File:Hamnoy_-_Lofoten,_Norway_-_Seascape_photography_(49568951078).jpg" target="_blank" rel="noopener">Giuseppe Milo / Wikimedia Commons</a> · <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noopener">CC BY 2.0</a> · 画面裁切</p><p>真实底图 <a href="https://openfreemap.org/">OpenFreeMap</a> · <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a> · <a href="https://openmaptiles.org/">OpenMapTiles</a><br>地理示意底图：<a href="https://www.naturalearthdata.com/about/terms-of-use/">Natural Earth</a></p></div></footer>
 <div id="toast" class="toast" role="status" hidden></div>
 <dialog id="share-dialog"><form method="dialog"><button class="dialog-close" aria-label="关闭">×</button></form><h2>分享这段旅程</h2><p>复制链接，发给同行的朋友。</p><label for="share-link">行程链接</label><input id="share-link" readonly><button id="copy-link" type="button">复制链接</button></dialog>
 </body>

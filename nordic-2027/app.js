@@ -8,8 +8,9 @@
   const money = n => n.toLocaleString('zh-CN');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const colors = {sight:'#2c6c85',stay:'#927125',airport:'#153642',paid:'#7360a6'};
-  let region = 'lofoten', date = 'all', toastTimer;
-  const camera = new window.RouteMapControls($('map-stage'), zoom => {
+  let region = 'lofoten', date = 'all', toastTimer, experience;
+  const camera = new window.RouteMapControls($('fallback-map'), zoom => {
+    if(experience?.visible())return;
     $('zoom-in').disabled=zoom>=6; $('zoom-out').disabled=zoom<=1;
     $('map-scale').textContent=Math.round(zoom*100)+'%';
   });
@@ -60,7 +61,7 @@
       const d = chosenDays()[0], index = days.indexOf(d);
       const options = d.optional.map(place).filter(p => p.region === region);
       const activities = d.activities.map(id => trip.activities.find(a => a.id===id)).filter(Boolean);
-      $('day-detail').innerHTML = `<div class="detail-date"><span>2027.${d.date.slice(5).replace('-','.')}</span><span>全程 DAY ${d.number}</span></div><h3>${esc(d.title)}</h3><p class="detail-intro">${esc(d.intro)}</p><dl class="detail-facts"><div><dt>今晚</dt><dd>${esc(d.stay)}</dd></div><div><dt>${d.drive.includes('小时')?'驾驶':'交通'}</dt><dd>${esc(d.drive)}${d.drive.includes('小时')?'<small> · 粗估，不含游览</small>':''}</dd></div></dl><ol class="route-list">${localRoute(d).map((p,i)=>`<li><span>${i+1}</span>${esc(p.label)}</li>`).join('')}</ol>${options.length?`<p class="activity-copy"><strong>有余力再去</strong>${options.map(p=>esc(p.label)).join(' · ')}</p>`:''}${activities.length?`<p class="activity-copy"><strong>可选付费体验 · 待预订</strong>${activities.map(a=>esc(a.name)).join(' / ')}</p>`:''}<p class="day-tip">${esc(d.tip)}</p><div class="day-pager"><button type="button" data-date="${days[index-1]?.date||''}" ${index===0?'disabled':''}>← 前一天</button><button type="button" data-date="all">区域总览</button><button type="button" data-date="${days[index+1]?.date||''}" ${index===days.length-1?'disabled':''}>后一天 →</button></div>`;
+      $('day-detail').innerHTML = `<div class="detail-date"><span>2027.${d.date.slice(5).replace('-','.')}</span><span>全程 DAY ${d.number}</span></div><h3>${esc(d.title)}</h3><p class="detail-intro">${esc(d.intro)}</p><dl class="detail-facts"><div><dt>今晚</dt><dd>${esc(d.stay)}</dd></div><div><dt>${d.drive.includes('小时')?'驾驶':'交通'}</dt><dd>${esc(d.drive)}${d.drive.includes('小时')?'<small> · 粗估，不含游览</small>':''}</dd></div></dl><ol class="route-list">${localRoute(d).map((p,i)=>`<li><span>${i+1}</span><button type="button" data-place="${p.id}">${esc(p.label)} ↗</button></li>`).join('')}</ol>${options.length?`<p class="activity-copy"><strong>有余力再去</strong>${options.map(p=>esc(p.label)).join(' · ')}</p>`:''}${activities.length?`<p class="activity-copy"><strong>可选付费体验 · 待预订</strong>${activities.map(a=>esc(a.name)).join(' / ')}</p>`:''}<p class="day-tip">${esc(d.tip)}</p><div class="day-pager"><button type="button" data-date="${days[index-1]?.date||''}" ${index===0?'disabled':''}>← 前一天</button><button type="button" data-date="all">区域总览</button><button type="button" data-date="${days[index+1]?.date||''}" ${index===days.length-1?'disabled':''}>后一天 →</button></div>`;
     }
     $('day-detail').scrollTop = 0;
   }
@@ -97,7 +98,7 @@
     const occupied=[];
     pts.forEach((p,i)=>{
       const [x,y]=project(p.lng,p.lat),color=colors[p.type],radius=5*ui;
-      svg+=`<g><title>${esc(p.label)}</title>${p.type==='stay'?`<rect x="${x-radius}" y="${y-radius}" width="${radius*2}" height="${radius*2}" rx="${2*ui}"`:`<circle cx="${x}" cy="${y}" r="${radius}"`} fill="${color}" stroke="white" stroke-width="${1.5*ui}"/>`;
+      svg+=`<g data-place="${p.id}" role="button" tabindex="0" aria-label="查看${esc(p.label)}介绍"><title>${esc(p.label)}</title><circle cx="${x}" cy="${y}" r="${15*ui}" fill="transparent"/>${p.type==='stay'?`<rect x="${x-radius}" y="${y-radius}" width="${radius*2}" height="${radius*2}" rx="${2*ui}"`:`<circle cx="${x}" cy="${y}" r="${radius}"`} fill="${color}" stroke="white" stroke-width="${1.5*ui}"/>`;
       const important=p.type==='airport'||p.type==='stay'||date!=='all';
       if(important||i%3===0){
         const label=p.name.length>19?p.name.slice(0,18)+'…':p.name,tw=(label.length*6.4+12)*ui;
@@ -120,19 +121,45 @@
     if(!trip.regions.some(r=>r.id===nextRegion))return;
     region=nextRegion;
     date=trip.days.some(d=>d.region===region&&d.date===nextDate)?nextDate:'all';
-    renderTabs();renderDetail();renderFallback();
+    renderTabs();renderDetail();renderFallback();experience?.update(points(),routes());
     if(writeHash)history.replaceState(null,'',`#${region}${date==='all'?'':'/'+date}`);
   }
-  function readHash() {
-    const [r,d]=location.hash.slice(1).split('/');
-    if(trip.regions.some(x=>x.id===r))choose(r,d||'all',false);
+  const country={stockholm:'Stockholm Sweden',lofoten:'Lofoten Norway',iceland:'Iceland'};
+  const queries={'poi-001':'Stockholm Arlanda Airport Sweden','poi-007':'Harstad Narvik Airport Evenes Norway','poi-019':'Keflavik International Airport Iceland','poi-017':'Å i Lofoten Norway','poi-047':'Hov Gård Gimsøy Norway','poi-003':'Stockholm City Hall Sweden'};
+  const googleURL=p=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(queries[p.id]||p.name+' '+country[p.region]);
+  function openPlace(id,writeHash=true){
+    const p=place(id),info=window.PLACE_INFO[id];if(!p||!info)return;
+    const visits=trip.days.filter(d=>[...d.route,...d.optional,...d.stays].includes(id)||d.activities.some(a=>trip.activities.find(x=>x.id===a)?.place===id));
+    const stays=visits.filter(d=>d.stays.includes(id));
+    $('place-content').innerHTML=`<p class="eyebrow">${esc(country[p.region])}</p><h2 id="place-title">${esc(p.label)}</h2><p class="place-tagline">${esc(info.tagline)}</p><p class="place-intro">${esc(info.intro)}</p><section class="place-section"><h3>在我们的行程里</h3>${visits.map(d=>`<button type="button" class="place-visit" data-visit="${d.region}/${d.date}"><span>${shortDate(d.date)} · DAY ${d.number}</span><strong>${esc(d.title)} ↗</strong></button>`).join('')}</section>${stays.length?'<p class="place-area-note">建议住宿区域 · 具体酒店尚未选定</p>':''}<section class="place-section"><h3>停留提醒</h3><p>${esc(info.tip)}</p></section><a class="google-map-link" target="_blank" rel="noopener" href="${esc(googleURL(p))}">在 Google Maps 中查看 ↗</a><p class="small-note">打开地点搜索结果，确认入口、停车处与最新开放信息。活动集合点以预订通知为准。</p>`;
+    if(!$('place-dialog').open)$('place-dialog').showModal();
+    $('place-dialog').scrollTop=0;
+    if(writeHash)history.pushState(null,'',`#${region}/${date}/place/${id}`);
   }
+  function openPlaceList(){
+    $('place-content').innerHTML=`<p class="eyebrow">${esc(regionInfo().name)}</p><h2 id="place-title">${date==='all'?'区域地点':shortDate(date)+'的地点'}</h2><p class="place-tagline">点击一处，展开这段旅程。</p><div class="place-list">${points().map(p=>`<button type="button" data-place="${p.id}"><span>${esc(p.label)}</span><small>${esc(window.PLACE_INFO[p.id]?.tagline||'行程地点')} ↗</small></button>`).join('')}</div>`;
+    $('place-dialog').showModal();
+  }
+  function readHash(){
+    const [r,d,kind,id]=location.hash.slice(1).split('/');
+    if(trip.regions.some(x=>x.id===r))choose(r,d||'all',false);
+    if(kind==='place'&&window.PLACE_INFO[id])openPlace(id,false);
+    else if($('place-dialog').open)$('place-dialog').close();
+  }
+  $('map-workspace').addEventListener('click',e=>{
+    const p=e.target.closest('[data-place]');if(p){openPlace(p.dataset.place);return;}
+    const visit=e.target.closest('[data-visit]');if(visit){$('place-dialog').close();choose(...visit.dataset.visit.split('/'));}
+  });
+  $('fallback-map').addEventListener('keydown',e=>{const p=e.target.closest('[data-place]');if(p&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openPlace(p.dataset.place);}});
+  $('close-place').addEventListener('click',()=>$('place-dialog').close());
+  $('place-dialog').addEventListener('close',()=>{if(location.hash.includes('/place/'))history.replaceState(null,'',`#${region}/${date}`);});
+  $('map-places').addEventListener('click',openPlaceList);
   $('regions').addEventListener('click',e=>{const b=e.target.closest('[data-region]');if(b)choose(b.dataset.region);});
   for(const id of ['day-tabs','day-detail'])$(id).addEventListener('click',e=>{const b=e.target.closest('[data-date]');if(b&&!b.disabled){choose(region,b.dataset.date);$('day-tabs').querySelector('[aria-pressed="true"]')?.scrollIntoView({block:'nearest',inline:'nearest',behavior:reduced?'instant':'smooth'});}});
   $('full-itinerary').addEventListener('click',e=>{const b=e.target.closest('[data-jump]');if(b){choose(...b.dataset.jump.split('/'));$('itinerary').scrollIntoView({behavior:reduced?'instant':'smooth'});}});
-  $('reset-map').addEventListener('click',()=>camera.reset());
-  $('zoom-in').addEventListener('click',()=>camera.zoomAt(1.4));
-  $('zoom-out').addEventListener('click',()=>camera.zoomAt(1/1.4));
+  $('reset-map').addEventListener('click',()=>experience.reset());
+  $('zoom-in').addEventListener('click',()=>experience.zoomBy(1.4));
+  $('zoom-out').addEventListener('click',()=>experience.zoomBy(1/1.4));
   function showToast(text){clearTimeout(toastTimer);$('toast').textContent=text;$('toast').hidden=false;toastTimer=setTimeout(()=>{$('toast').hidden=true;},3200);}
   function shareURL(){return location.protocol==='file:'?'https://tryamedicine.github.io/nordic-2027/'+location.hash:location.href;}
   async function copyLink(){
@@ -145,7 +172,9 @@
   });
   $('copy-link').addEventListener('click',async()=>{if(await copyLink())$('share-dialog').close();else{$('share-link').select();showToast('请长按或手动复制上方链接。');}});
   window.addEventListener('hashchange',readHash);
+  experience=new window.TravelMap({camera,onPlace:openPlace,onResize:renderFallback});
   renderStatic();
   const initial=location.hash.slice(1).split('/');
   choose(trip.regions.some(r=>r.id===initial[0])?initial[0]:'lofoten',initial[1]||'all',false);
+  if(initial[2]==='place'&&window.PLACE_INFO[initial[3]])openPlace(initial[3],false);
 })();

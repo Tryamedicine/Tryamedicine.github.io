@@ -12,6 +12,7 @@
       bind('pointerdown', e => {
         if (e.target?.closest?.('button')) return;
         if (e.pointerType === 'mouse' && e.button !== 0) return;
+        if(!this.pointers.size)this.didDrag=false;
         this.pointers.set(e.pointerId, this.local(e.clientX,e.clientY));
         element.setPointerCapture(e.pointerId);
         element.classList.add('dragging');
@@ -22,6 +23,7 @@
         const before = [...this.pointers.values()];
         this.pointers.set(e.pointerId,this.local(e.clientX,e.clientY));
         const after = [...this.pointers.values()];
+        if(before.length>1||Math.hypot(before[0].x-after[0].x,before[0].y-after[0].y)>5)this.didDrag=true;
         if (before.length === 1) {
           this.x += after[0].x-before[0].x;
           this.y += after[0].y-before[0].y;
@@ -39,6 +41,7 @@
         if (!this.pointers.size) element.classList.remove('dragging');
       };
       for (const event of ['pointerup','pointercancel','lostpointercapture']) bind(event,release);
+      element.addEventListener('click',e=>{if(this.didDrag){e.preventDefault();e.stopPropagation();}}, {capture:true});
       bind('wheel', e => {
         e.preventDefault();
         if (this.gestureActive) return;
