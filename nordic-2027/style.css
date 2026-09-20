@@ -6,3 +6,21 @@
 @media(max-width:360px){.wrap,.topbar{padding-left:15px;padding-right:15px}h1{font-size:44px}.metric strong{font-size:29px}.region-btn{padding:10px 8px}.region-btn strong{font-size:15px}.tips-grid{grid-template-columns:1fr}.map-stage{height:325px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 @media print{.topbar,.share,.map-mode,#map,.day-strip,.region-tabs,.text-link,.all-days>summary{display:none!important}.wrap{max-width:none;padding:10px}.intro{grid-template-columns:1fr 1fr}.hero-photo{height:220px}.intro h1{font-size:40px}.travel-board{display:block}.day-detail{max-height:none;overflow:visible;border:0}.map-stage{height:350px}.budget-section{break-inside:avoid}.tips-grid{grid-template-columns:repeat(3,1fr)}footer{break-inside:avoid}.all-days{display:block}}
+
+/* Map gestures belong only to this viewport; page zoom remains available outside. */
+#fallback-map{touch-action:none;overscroll-behavior:contain;user-select:none;-webkit-user-select:none;cursor:grab;-webkit-tap-highlight-color:transparent}
+#fallback-map.dragging{cursor:grabbing}
+#fallback-map:focus-visible{outline:3px solid #e0a947;outline-offset:-3px}
+.map-stage{overflow:hidden;background:#e6eff2}
+.map-stage #fallback-map svg{background:#e6eff2;touch-action:none}
+.map-zoom{position:absolute;z-index:4;right:12px;top:12px;display:grid;background:white;border:1px solid #d8e0e3;border-radius:5px;box-shadow:0 2px 8px #17344112;overflow:hidden;touch-action:none}
+.map-zoom button{width:44px;height:44px;font-size:24px;line-height:1;background:white;touch-action:none}
+.map-zoom button+button{border-top:1px solid #d8e0e3}
+.map-zoom button:disabled{color:#aebcc2;cursor:default}
+.map-mode{bottom:12px;pointer-events:none}
+#map-scale{font-variant-numeric:tabular-nums;color:var(--muted);border-left:1px solid var(--line);padding-left:9px;min-width:43px}
+.map-help{font-size:11px;color:var(--muted);padding:9px 20px 0}
+@media(max-width:720px){.map-help{padding-left:14px;padding-right:14px}}
+
+#map-stage{touch-action:none;overscroll-behavior:contain}
+#map-stage.dragging #fallback-map{cursor:grabbing}

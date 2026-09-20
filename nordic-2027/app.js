@@ -8,8 +8,11 @@
   const money = n => n.toLocaleString('zh-CN');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const colors = {sight:'#2c6c85',stay:'#927125',airport:'#153642',paid:'#7360a6'};
-  let region = 'lofoten', date = 'all', map, mapLoaded = false, mapVisible = false, manualFallback = false;
-  let markers = [], popup, toastTimer, mapFailed = false;
+  let region = 'lofoten', date = 'all', toastTimer;
+  const camera = new window.RouteMapControls($('map-stage'), zoom => {
+    $('zoom-in').disabled=zoom>=6; $('zoom-out').disabled=zoom<=1;
+    $('map-scale').textContent=Math.round(zoom*100)+'%';
+  });
   const regionDays = () => trip.days.filter(d => d.region === region);
   const chosenDays = () => regionDays().filter(d => date === 'all' || d.date === date);
   const regionInfo = () => trip.regions.find(r => r.id === region);
@@ -76,107 +79,48 @@
     }).join('')}</div></div>`).join('');
   }
 
-  // Geographic fallback. Mercator coordinates, never a road-navigation geometry.
+  // Local coastline schematic. Route segments show stop order, not road geometry.
   const mercY = lat => Math.log(Math.tan(Math.PI/4+lat*Math.PI/360))*180/Math.PI;
   function renderFallback() {
     const pts = points(), w = 900, h = 570;
+    const rect=$('map-stage').getBoundingClientRect();
+    const ui=1/Math.min((rect.width||900)/w,(rect.height||570)/h);
     let minX=Math.min(...pts.map(p=>p.lng)),maxX=Math.max(...pts.map(p=>p.lng));
     let minY=Math.min(...pts.map(p=>mercY(p.lat))),maxY=Math.max(...pts.map(p=>mercY(p.lat)));
     const cx=(minX+maxX)/2,cy=(minY+maxY)/2;
     const scale=Math.min((w-180)/Math.max(maxX-minX,.035),(h-145)/Math.max(maxY-minY,.035));
     const project=(lng,lat)=>[w/2+(lng-cx)*scale,h/2-(mercY(lat)-cy)*scale];
     const pair=p=>project(p[0],p[1]).map(v=>v.toFixed(1)).join(',');
-    let svg=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(regionInfo().label)}当前行程地理示意图"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#cedfe5" stroke-width=".5"/></pattern></defs><rect width="900" height="570" fill="url(#grid)"/>`;
-    svg += `<g fill="#f5f6ed" stroke="#b6c9ce" stroke-width="1">${(window.GEOGRAPHY?.[region]||[]).map(r=>`<path d="M${r.map(pair).join('L')}Z"/>`).join('')}</g>`;
+    let svg=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(regionInfo().label)}当前行程地理示意图"><g id="route-art">`;
+    svg += `<g fill="#f8faf7" stroke="#c3d3d8" stroke-width="1">${(window.GEOGRAPHY?.[region]||[]).map(r=>`<path d="M${r.map(pair).join('L')}Z"/>`).join('')}</g>`;
     svg += routes().features.map(f=>`<polyline points="${f.geometry.coordinates.map(pair).join(' ')}" fill="none" stroke="#2c6c85" stroke-width="3" stroke-dasharray="7 6" opacity=".8"/>`).join('');
     const occupied=[];
     pts.forEach((p,i)=>{
-      const [x,y]=project(p.lng,p.lat),color=colors[p.type];
-      svg+=`<g><title>${esc(p.label)}</title>${p.type==='stay'?`<rect x="${x-6}" y="${y-6}" width="12" height="12" rx="2"`:`<circle cx="${x}" cy="${y}" r="6"`} fill="${color}" stroke="white" stroke-width="2"/>`;
+      const [x,y]=project(p.lng,p.lat),color=colors[p.type],radius=5*ui;
+      svg+=`<g><title>${esc(p.label)}</title>${p.type==='stay'?`<rect x="${x-radius}" y="${y-radius}" width="${radius*2}" height="${radius*2}" rx="${2*ui}"`:`<circle cx="${x}" cy="${y}" r="${radius}"`} fill="${color}" stroke="white" stroke-width="${1.5*ui}"/>`;
       const important=p.type==='airport'||p.type==='stay'||date!=='all';
       if(important||i%3===0){
-        const label=p.name,tw=Math.min(220,label.length*7.4+14);
-        const left=x>w-240;const tx=left?x-tw-12:x+12;
-        let ty=y-9;
+        const label=p.name.length>19?p.name.slice(0,18)+'…':p.name,tw=(label.length*6.4+12)*ui;
+        const left=x>w-tw-20*ui;const tx=Math.max(8,left?x-tw-10*ui:x+10*ui);
+        let ty=y-8*ui;
         for(let n=0;n<5;n++){
-          if(!occupied.some(o=>Math.abs(o[1]-ty)<21 && tx<o[0]+o[2] && tx+tw>o[0])) break;
-          ty+=21;
+          if(!occupied.some(o=>Math.abs(o[1]-ty)<21*ui && tx<o[0]+o[2] && tx+tw>o[0])) break;
+          ty+=21*ui;
         }
-        if(ty<h-30){occupied.push([tx,ty,tw]);svg+=`<rect x="${tx}" y="${ty-2}" width="${tw}" height="21" rx="3" fill="#ffffffed"/><text x="${tx+7}" y="${ty+13}" font-size="13" font-family="system-ui,sans-serif" fill="#153642">${esc(label)}</text>`;}
+        if(ty<h-30*ui){occupied.push([tx,ty,tw]);svg+=`<rect x="${tx}" y="${ty-2*ui}" width="${tw}" height="${21*ui}" rx="${3*ui}" fill="#ffffffed"/><text x="${tx+6*ui}" y="${ty+13*ui}" font-size="${12*ui}" font-family="system-ui,sans-serif" fill="#153642">${esc(label)}</text>`;}
       }
       svg+='</g>';
     });
-    svg+='<text x="875" y="32" text-anchor="end" font-size="13" fill="#536975" font-family="system-ui,sans-serif">N ↑</text><text x="884" y="557" text-anchor="end" font-size="10" fill="#536975" font-family="system-ui,sans-serif">Natural Earth · 地点与路线示意</text></svg>';
+    svg+='</g><text x="875" y="32" text-anchor="end" font-size="13" fill="#536975" font-family="system-ui,sans-serif">N ↑</text><text x="884" y="557" text-anchor="end" font-size="10" fill="#536975" font-family="system-ui,sans-serif">Natural Earth · 地点与路线示意</text></svg>';
     $('fallback-map').innerHTML=svg;
+    camera.reset();
   }
 
-  function fitMap(animate=true) {
-    if(!mapLoaded)return;
-    const pts=points(); if(!pts.length)return;
-    const bounds = new maplibregl.LngLatBounds();
-    pts.forEach(p=>bounds.extend([p.lng,p.lat]));
-    map.stop();
-    map.fitBounds(bounds,{padding:{top:70,bottom:70,left:55,right:65},maxZoom:13,duration:animate&&!reduced?850:0});
-  }
-  function setMapVisibility() {
-    const visible=mapVisible&&!manualFallback;
-    $('map').classList.toggle('ready',visible);
-    $('map').style.pointerEvents=visible?'auto':'none';
-    $('map').setAttribute('aria-hidden',String(!visible));
-    // Keep hidden map controls out of keyboard navigation.
-    $('map').inert=!visible;
-    $('map-status').textContent=visible?'地理地图':'路线示意';
-    $('map-toggle').textContent=visible?'切换示意图':mapVisible?'切换地理地图':'加载地理地图';
-  }
-  function updateMap() {
-    renderFallback();
-    if(!mapLoaded)return;
-    popup?.remove();
-    map.getSource('trip-routes')?.setData(routes());
-    markers.forEach(m=>m.remove());markers=[];
-    points().forEach((p,i)=>{
-      const el=document.createElement('button');
-      el.type='button';el.className='map-marker';el.dataset.type=p.type;
-      el.setAttribute('aria-label',p.label+(p.optional?'，可选':''));
-      el.textContent=p.type==='airport'?'✈':p.type==='stay'?'⌂':p.type==='paid'?'◇':String(i+1);
-      // Sparse labels on the full-region view; all markers remain selectable.
-      if(p.type==='airport'||p.type==='stay'||(date!=='all'&&i%2===0)) {
-        const label=document.createElement('span');label.className='marker-label';label.textContent=p.name;el.appendChild(label);
-      }
-      el.addEventListener('click',()=>{
-        popup?.remove();
-        const role={airport:'机场',stay:'建议住宿区域 · 房源待选',paid:'可选付费体验 · 待预订',sight:'行程景点'}[p.type];
-        popup=new maplibregl.Popup({offset:18,closeButton:true}).setLngLat([p.lng,p.lat]).setHTML(`<strong>${esc(p.label)}</strong><p>${role}${p.optional?' · 可选停留':''}</p><p>位置为区域参考，不作驾驶导航。</p>`).addTo(map);
-      });
-      markers.push(new maplibregl.Marker({element:el}).setLngLat([p.lng,p.lat]).addTo(map));
-    });
-    fitMap();
-  }
-  function initMap() {
-    if(map || !window.maplibregl)return;
-    try {
-      map = new maplibregl.Map({container:'map',style:'./assets/map-style.json',center:[14,68.1],zoom:6,attributionControl:false,dragRotate:false,touchPitch:false,pitchWithRotate:false});
-      map.addControl(new maplibregl.NavigationControl({showCompass:false}),'top-right');
-      map.addControl(new maplibregl.AttributionControl({compact:true,customAttribution:'<a href="https://openfreemap.org/" target="_blank" rel="noopener">OpenFreeMap</a>'}),'bottom-right');
-      map.on('load',()=>{
-        mapLoaded=true;
-        map.addSource('trip-routes',{type:'geojson',data:routes()});
-        map.addLayer({id:'trip-route-lines',type:'line',source:'trip-routes',paint:{'line-color':'#2c6c85','line-width':3,'line-dasharray':[2,2],'line-opacity':.8}});
-        updateMap();
-      });
-      map.on('idle',()=>{
-        if(mapLoaded&&!mapFailed&&map.areTilesLoaded()){mapVisible=true;setMapVisibility();}
-      });
-      map.on('error',()=>{mapFailed=true;mapVisible=false;setMapVisibility();});
-      map.on('webglcontextlost',()=>{mapVisible=false;setMapVisibility();});
-      setMapVisibility();
-    } catch (_) {map=undefined;mapVisible=false;setMapVisibility();}
-  }
   function choose(nextRegion,nextDate='all',writeHash=true) {
     if(!trip.regions.some(r=>r.id===nextRegion))return;
     region=nextRegion;
     date=trip.days.some(d=>d.region===region&&d.date===nextDate)?nextDate:'all';
-    renderTabs();renderDetail();updateMap();
+    renderTabs();renderDetail();renderFallback();
     if(writeHash)history.replaceState(null,'',`#${region}${date==='all'?'':'/'+date}`);
   }
   function readHash() {
@@ -186,12 +130,9 @@
   $('regions').addEventListener('click',e=>{const b=e.target.closest('[data-region]');if(b)choose(b.dataset.region);});
   for(const id of ['day-tabs','day-detail'])$(id).addEventListener('click',e=>{const b=e.target.closest('[data-date]');if(b&&!b.disabled){choose(region,b.dataset.date);$('day-tabs').querySelector('[aria-pressed="true"]')?.scrollIntoView({block:'nearest',inline:'nearest',behavior:reduced?'instant':'smooth'});}});
   $('full-itinerary').addEventListener('click',e=>{const b=e.target.closest('[data-jump]');if(b){choose(...b.dataset.jump.split('/'));$('itinerary').scrollIntoView({behavior:reduced?'instant':'smooth'});}});
-  $('reset-map').addEventListener('click',()=>{fitMap();renderFallback();});
-  $('map-toggle').addEventListener('click',()=>{
-    if(!mapVisible){manualFallback=false;if(mapFailed){map?.remove();map=undefined;mapLoaded=false;mapFailed=false;}initMap();if(mapLoaded){map.triggerRepaint();fitMap(false);}showToast('地理地图需要网络，路线示意图可直接查看。');}
-    else manualFallback=!manualFallback;
-    setMapVisibility();
-  });
+  $('reset-map').addEventListener('click',()=>camera.reset());
+  $('zoom-in').addEventListener('click',()=>camera.zoomAt(1.4));
+  $('zoom-out').addEventListener('click',()=>camera.zoomAt(1/1.4));
   function showToast(text){clearTimeout(toastTimer);$('toast').textContent=text;$('toast').hidden=false;toastTimer=setTimeout(()=>{$('toast').hidden=true;},3200);}
   function shareURL(){return location.protocol==='file:'?'https://tryamedicine.github.io/nordic-2027/'+location.hash:location.href;}
   async function copyLink(){
@@ -207,5 +148,4 @@
   renderStatic();
   const initial=location.hash.slice(1).split('/');
   choose(trip.regions.some(r=>r.id===initial[0])?initial[0]:'lofoten',initial[1]||'all',false);
-  initMap();
 })();
