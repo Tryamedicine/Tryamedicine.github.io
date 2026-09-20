@@ -1,44 +1,365 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0d2b3d"><title>2027 北欧冬季旅行计划</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<meta name="theme-color" content="#0a1f2d"/>
+<title>2027 Nordic Winter Trip</title>
+<meta name="description" content="2027春节 Stockholm · Lofoten · Iceland 冬季旅行计划"/>
 <style>
-:root{--ink:#102938;--muted:#667b87;--bg:#f4f7f8;--card:#fff;--line:#d8e2e6;--navy:#0d2b3d;--blue:#3f7f99;--ice:#e7f4f6;--green:#2f7d69;--gold:#9a6d20;--orange:#b65a34}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Microsoft YaHei",sans-serif;line-height:1.6}a{color:inherit;text-decoration:none}img{display:block;width:100%}.wrap{max-width:1060px;margin:auto;padding:0 18px 70px}.hero{min-height:600px;display:flex;align-items:flex-end;color:#fff;background:linear-gradient(180deg,rgba(5,26,38,.08),rgba(5,26,38,.86)),url('https://images.unsplash.com/photo-1593378026483-2a1fd46a35bd?auto=format&fit=crop&fm=jpg&q=82&w=1800') center/cover}.hero>div{width:min(1060px,100%);margin:auto;padding:70px 20px 48px}.eyebrow{font-size:13px;letter-spacing:.08em;text-transform:uppercase;padding:7px 11px;border:1px solid rgba(255,255,255,.35);border-radius:999px;display:inline-block;background:rgba(255,255,255,.08)}h1{font-size:clamp(42px,8vw,82px);line-height:.97;margin:18px 0 16px;letter-spacing:-.045em}.sub{font-size:clamp(17px,2.1vw,24px);color:#e7f2f4;max-width:760px}.hero-pills{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.pill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);font-weight:650;font-size:13px}.nav{position:sticky;top:0;z-index:20;background:rgba(244,247,248,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}.nav div{max-width:1060px;margin:auto;display:flex;gap:7px;overflow:auto;padding:10px 18px}.nav a{white-space:nowrap;padding:8px 11px;border-radius:10px;color:#3a5360;font-size:13px}.nav a:hover{background:#fff}section{padding-top:54px}.head{display:flex;justify-content:space-between;gap:22px;align-items:flex-end;margin-bottom:20px}.kicker{font-size:12px;letter-spacing:.09em;text-transform:uppercase;font-weight:800;color:var(--blue)}h2{font-size:clamp(28px,4vw,46px);line-height:1.08;margin:5px 0 0;letter-spacing:-.03em}.note{max-width:480px;color:var(--muted);font-size:14px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:15px}.card{background:#fff;border:1px solid var(--line);border-radius:21px;padding:20px;box-shadow:0 12px 34px rgba(20,50,65,.08)}.metric{grid-column:span 4}.metric .v{font-size:34px;font-weight:850;letter-spacing:-.03em}.metric .l{color:var(--muted);font-size:13px}.budget{grid-column:span 12}.bars{display:grid;gap:10px;margin-top:14px}.bar{display:grid;grid-template-columns:125px 1fr auto;gap:10px;align-items:center;font-size:13px}.track{height:9px;background:#edf2f4;border-radius:999px;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,#2a708b,#78aec1);border-radius:999px}.flow{display:flex;align-items:center;gap:7px;overflow:auto;padding:6px 0}.node{min-width:110px;background:#eef5f7;padding:11px;border-radius:13px;text-align:center}.node b{display:block}.node span{font-size:11px;color:var(--muted)}.arr{color:#8ba1ad}.photos{display:grid;grid-template-columns:1.15fr 1fr;gap:14px;margin-top:18px}.photo{position:relative;min-height:320px;border-radius:23px;overflow:hidden;background:#dfe8ec}.photo img{position:absolute;width:100%;height:100%;object-fit:cover}.cap{position:absolute;left:14px;right:14px;bottom:14px;color:#fff;padding:10px 12px;border-radius:13px;background:rgba(8,34,49,.3);backdrop-filter:blur(8px);text-shadow:0 2px 14px #000}.daylist{display:grid;gap:15px}.day{background:#fff;border:1px solid var(--line);border-radius:21px;overflow:hidden;box-shadow:0 10px 28px rgba(20,50,65,.07)}.daytop{display:grid;grid-template-columns:82px 1fr auto;gap:10px;align-items:center;padding:17px 19px;border-bottom:1px solid #edf1f3}.date{font-weight:850;color:var(--blue)}.title{font-size:18px;font-weight:820}.tag{font-size:11px;font-weight:760;padding:6px 8px;border-radius:999px;background:#edf7f3;color:var(--green)}.body{padding:17px 19px 20px}.route{display:flex;align-items:center;gap:7px;overflow:auto;padding:3px 0 15px}.stop{white-space:nowrap;padding:8px 10px;border-radius:10px;background:#f1f5f6;font-size:12px;font-weight:720}.hotel{background:#fff0d6;color:#7a5718}.paid{background:#fff0e7;color:var(--orange)}.route-arrow{color:#9badb6}.cols{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.body ul{margin:0;padding-left:18px;color:#304955}.body li{margin:6px 0}.facts{display:grid;gap:8px}.fact{display:flex;gap:8px;padding:10px;border-radius:11px;background:#f6f9fa;font-size:12px}.fact b{min-width:55px}.sectionphoto{display:grid;grid-template-columns:1.1fr .9fr;gap:15px;margin-bottom:18px}.cover{min-height:350px;border-radius:23px;overflow:hidden;position:relative}.cover img{position:absolute;width:100%;height:100%;object-fit:cover}.copy{border-radius:23px;background:var(--navy);color:#fff;padding:24px;display:flex;flex-direction:column;justify-content:flex-end}.copy p{color:#d7e6ea}.schematic{background:#fff;border:1px solid var(--line);border-radius:21px;padding:18px;margin-bottom:18px;overflow:auto}.maprow{min-width:780px;display:flex;align-items:center;gap:7px}.mappt{position:relative;min-width:110px;text-align:center}.dot{width:14px;height:14px;margin:0 auto 6px;border-radius:50%;background:#2a728d;border:3px solid #dff2f7;box-shadow:0 0 0 1px #2a728d}.mappt.hotel .dot{background:#d6a345;box-shadow:0 0 0 1px #b78830}.mappt small{display:block;color:var(--muted)}.road{height:3px;min-width:36px;flex:1;background:linear-gradient(90deg,#6aa6bc,#b3cad3)}.stay{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stay .card{box-shadow:none}.stay h3{margin:0 0 7px}.share{position:fixed;right:16px;bottom:20px;z-index:30;border:0;border-radius:999px;padding:12px 16px;background:#fff;color:var(--navy);box-shadow:0 8px 28px rgba(0,0,0,.16);font-weight:800}.foot{margin-top:60px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
-@media(max-width:760px){.hero{min-height:555px}.metric{grid-column:span 12}.head{display:block}.note{margin-top:10px}.photos,.sectionphoto,.cols{grid-template-columns:1fr}.daytop{grid-template-columns:68px 1fr}.tag{grid-column:2}.stay{grid-template-columns:1fr}.bar{grid-template-columns:95px 1fr auto}.photo{min-height:280px}}
-</style></head>
+:root{
+  --bg:#eef3f4; --paper:#f8fbfb; --ink:#0b2432; --muted:#6d7f89; --line:#dbe4e7;
+  --navy:#0a2231; --navy2:#102f43; --ice:#d9f0f4; --blue:#5ab3cf; --blue2:#2c7595;
+  --gold:#d8b261; --orange:#d57d5e; --green:#59a58e; --violet:#9181c0;
+  --white:#fff; --shadow:0 18px 50px rgba(18,49,63,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+  radial-gradient(circle at 15% 5%,#f8fbfb 0,#eef4f5 36%,#eaf0f2 100%);
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  line-height:1.55
+}
+button{font:inherit}
+.wrap{max-width:1180px;margin:auto;padding:0 20px 88px}
+.hero{
+  min-height:560px;color:white;display:flex;align-items:flex-end;position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 78% 12%,rgba(103,192,219,.28),transparent 30%),
+    radial-gradient(circle at 18% 30%,rgba(125,214,214,.18),transparent 34%),
+    linear-gradient(145deg,#071d2b 0%,#0a2b3d 54%,#153b4c 100%);
+}
+.hero:before{
+  content:"";position:absolute;inset:0;opacity:.22;
+  background-image:
+    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:52px 52px;
+  mask-image:linear-gradient(180deg,black,transparent 90%);
+}
+.hero:after{
+  content:"";position:absolute;width:620px;height:620px;right:-180px;bottom:-280px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.18);box-shadow:
+  0 0 0 70px rgba(255,255,255,.025),
+  0 0 0 140px rgba(255,255,255,.018);
+}
+.hero-in{position:relative;z-index:2;width:min(1180px,100%);margin:auto;padding:72px 20px 54px}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:850;color:#8bd9e7}
+h1{margin:12px 0 14px;font-size:clamp(44px,8vw,88px);line-height:.94;letter-spacing:-.055em}
+.hero-sub{font-size:clamp(18px,2.2vw,24px);max-width:760px;color:#e2f3f6}
+.hero-route{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:24px}
+.hero-route .node{padding:9px 12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);border-radius:999px;font-weight:750;font-size:13px;backdrop-filter:blur(8px)}
+.hero-route .arrow{opacity:.55}
+section{padding-top:58px}
+.section-head{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;margin-bottom:22px}
+.section-head .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--blue2);font-weight:850}
+h2{font-size:clamp(30px,4.8vw,52px);line-height:1.04;letter-spacing:-.04em;margin:3px 0}
+.section-head p{max-width:520px;margin:0;color:var(--muted);font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.stat{
+  background:rgba(255,255,255,.84);border:1px solid rgba(214,226,230,.9);border-radius:24px;padding:20px;
+  box-shadow:var(--shadow);backdrop-filter:blur(12px)
+}
+.stat .label{font-size:12px;color:var(--muted);font-weight:760}
+.stat .value{font-size:34px;letter-spacing:-.04em;font-weight:900;margin:6px 0 1px}
+.stat .desc{font-size:12px;color:var(--muted)}
+.summary-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px;margin-top:14px}
+.card{background:rgba(255,255,255,.9);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+.flight-route{display:flex;align-items:center;gap:8px;overflow:auto;padding-bottom:4px}
+.flight-node{min-width:114px;border-radius:14px;background:#eef5f6;padding:11px;text-align:center}
+.flight-node b{display:block;font-size:14px}.flight-node small{color:var(--muted);font-size:11px}
+.flight-arrow{color:#9badb5;font-size:20px}
+.budget{display:grid;gap:10px;margin-top:12px}
+.budget-row{display:grid;grid-template-columns:110px 1fr auto;gap:10px;align-items:center;font-size:13px}
+.track{height:9px;background:#edf2f3;border-radius:999px;overflow:hidden}
+.fill{height:100%;background:linear-gradient(90deg,var(--blue2),#8bd5df);border-radius:999px}
+.focus{
+  background:linear-gradient(145deg,#0c2a3b,#12394c);color:white;
+  display:flex;flex-direction:column;justify-content:space-between;min-height:190px
+}
+.focus .small{color:#c9e1e8;font-size:13px}
+.focus .big{font-size:29px;font-weight:900;line-height:1.1;letter-spacing:-.03em}
+.map-shell{background:white;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}
+.toolbar{
+  padding:14px 16px;border-bottom:1px solid #e8eef0;background:rgba(250,252,252,.95);
+  display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap
+}
+.tabs,.day-tabs{display:flex;gap:7px;overflow:auto}
+.tab,.day-tab{
+  border:1px solid var(--line);background:#fff;color:#38515d;border-radius:999px;padding:9px 13px;
+  font-weight:760;cursor:pointer;white-space:nowrap;transition:.25s ease
+}
+.tab.active,.day-tab.active{background:var(--navy);color:white;border-color:var(--navy)}
+.map-wrap{position:relative;background:linear-gradient(145deg,#09202e,#0d3043);overflow:hidden}
+#routeMap{display:block;width:100%;height:620px}
+.grid-lines line{stroke:rgba(255,255,255,.06);stroke-width:1}
+.route-path{fill:none;stroke:#8fe3ef;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 7px rgba(103,211,228,.32))}
+.route-path.anim{stroke-dasharray:1200;stroke-dashoffset:1200;animation:draw 1.15s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.marker{transition:opacity .25s ease}
+.map-label{fill:white;font-size:13px;font-weight:800;paint-order:stroke;stroke:#09202e;stroke-width:4px;stroke-linejoin:round}
+.map-sub{fill:#b7d4dc;font-size:10px;font-weight:700;paint-order:stroke;stroke:#09202e;stroke-width:3px}
+.map-card{
+  position:absolute;left:18px;right:auto;bottom:18px;max-width:520px;
+  background:rgba(247,251,252,.95);border:1px solid rgba(255,255,255,.45);border-radius:18px;padding:14px 16px;
+  box-shadow:0 14px 40px rgba(0,0,0,.18);backdrop-filter:blur(14px)
+}
+.map-card .title{font-size:19px;font-weight:900;letter-spacing:-.02em}
+.map-card .meta{color:var(--muted);font-size:12px;margin-top:3px}
+.legend{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.legend span{font-size:11px;padding:5px 8px;border-radius:999px;background:#edf4f5;color:#36515e}
+.detail-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:14px}
+.detail-card{background:white;border:1px solid var(--line);border-radius:22px;padding:19px;box-shadow:var(--shadow)}
+.route-pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.route-pills span{padding:7px 9px;border-radius:10px;background:#eff5f6;font-size:12px;font-weight:760}
+.detail-list{padding-left:18px;margin:12px 0 0;color:#38515d;font-size:13px}.detail-list li{margin:7px 0}
+.badge{display:inline-block;padding:4px 7px;border-radius:999px;font-size:11px;font-weight:850;background:#eef7f4;color:#2f7d68;margin-right:5px}
+.badge.paid{background:#fff0e9;color:#b75a38}
+.photo-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.photo{height:190px;border-radius:19px;overflow:hidden;position:relative;background:#dce7ea}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(4,24,35,.68))}
+.photo span{position:absolute;z-index:2;left:12px;bottom:10px;color:white;font-size:13px;font-weight:850}
+.tips{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tip{background:white;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}
+.tip b{display:block;margin-bottom:6px}.tip p{margin:0;color:var(--muted);font-size:13px}
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+@media(max-width:820px){
+  .stats{grid-template-columns:1fr 1fr}.summary-grid,.detail-grid{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:9px}
+  .photo-row{grid-template-columns:1fr}.photo{height:220px}.tips{grid-template-columns:1fr}
+  .toolbar{display:block}.day-tabs{margin-top:9px}#routeMap{height:520px}.map-card{left:10px;right:10px;bottom:10px;max-width:none}
+  .budget-row{grid-template-columns:94px 1fr auto}
+}
+</style>
+</head>
 <body>
-<header class="hero"><div><span class="eyebrow">2027 春节 · 北欧冬季旅行</span><h1>Stockholm<br>Lofoten<br>Iceland</h1><div class="sub">城市只留一站，剩下的时间交给雪山、峡湾、黑沙滩、冰川和极光。</div><div class="hero-pills"><span class="pill">1/30 出发 · 2/12 回沪</span><span class="pill">机票 ¥9,175 / 人</span><span class="pill">预计总预算 ≈ ¥25,000 / 人</span><span class="pill">核心：Lofoten + Iceland</span></div></div></header>
-<nav class="nav"><div><a href="#overview">总览</a><a href="#transport">大交通</a><a href="#stockholm">Stockholm</a><a href="#lofoten">Lofoten</a><a href="#iceland">Iceland</a><a href="#stay">住宿</a></div></nav>
+<header class="hero">
+  <div class="hero-in">
+    <div class="kicker">2027 · Nordic Winter Trip</div>
+    <h1>Stockholm<br>Lofoten<br>Iceland</h1>
+    <div class="hero-sub">城市只留一站，其余时间交给雪山、渔村、黑沙滩、冰川和冬季公路。</div>
+    <div class="hero-route">
+      <span class="node">上海</span><span class="arrow">→</span>
+      <span class="node">Stockholm</span><span class="arrow">→</span>
+      <span class="node">Lofoten</span><span class="arrow">→</span>
+      <span class="node">Iceland</span><span class="arrow">→</span>
+      <span class="node">上海</span>
+    </div>
+  </div>
+</header>
+
 <main class="wrap">
-<section id="overview"><div class="head"><div><div class="kicker">Trip at a glance</div><h2>行程总览</h2></div><div class="note">这版路线已经把不确定船期和 Tromsø 拿掉，换成 Stockholm → EVE 直接进入罗弗敦，再从 EVE 经 Oslo 去冰岛。交通确定性更高。</div></div>
-<div class="grid"><div class="card metric"><div class="l">旅行天数</div><div class="v">14 天</div><div class="l">2027.01.30 — 02.12</div></div><div class="card metric"><div class="l">机票合计</div><div class="v">¥9,175</div><div class="l">含随身 + 托运行李</div></div><div class="card metric"><div class="l">心理预算</div><div class="v">≈ ¥25k</div><div class="l">4 人左右同行的舒适型估算</div></div><div class="card budget"><b>预算结构</b><div class="bars"><div class="bar"><span>机票</span><div class="track"><div class="fill" style="width:92%"></div></div><b>¥9,175</b></div><div class="bar"><span>租车/油/保险</span><div class="track"><div class="fill" style="width:34%"></div></div><b>¥2.5–3.5k</b></div><div class="bar"><span>住宿</span><div class="track"><div class="fill" style="width:58%"></div></div><b>¥4.5–6k</b></div><div class="bar"><span>餐饮</span><div class="track"><div class="fill" style="width:40%"></div></div><b>¥3–4k</b></div><div class="bar"><span>活动/杂费</span><div class="track"><div class="fill" style="width:20%"></div></div><b>¥1–2k</b></div></div></div></div>
-<div class="photos"><div class="photo"><img src="https://images.unsplash.com/photo-1593378026483-2a1fd46a35bd?auto=format&fit=crop&fm=jpg&q=82&w=1500"><div class="cap"><b>Lofoten</b><br>雪山 · 海岸 · 渔村 · 极光</div></div><div class="photo"><img src="https://images.unsplash.com/photo-1680346129364-d12dabff7214?auto=format&fit=crop&fm=jpg&q=82&w=1300"><div class="cap"><b>Iceland</b><br>瀑布 · 黑沙滩 · 冰川 · 冰河湖</div></div></div></section>
-<section id="transport"><div class="head"><div><div class="kicker">Major transport</div><h2>大交通骨架</h2></div><div class="note">所有价格按目前截图最低价记录；内部航段与国际主票均筛选含随身和托运行李。</div></div><div class="card"><div class="flow"><div class="node"><b>上海 SHA</b><span>1/30 08:55</span></div><span class="arr">→</span><div class="node"><b>北京 PEK</b><span>2h55</span></div><span class="arr">→</span><div class="node"><b>Stockholm</b><span>16:30 到</span></div><span class="arr">→</span><div class="node"><b>Oslo</b><span>2/1 转机</span></div><span class="arr">→</span><div class="node"><b>EVE</b><span>14:30 到</span></div><span class="arr">→</span><div class="node"><b>Oslo</b><span>2/5 转机</span></div><span class="arr">→</span><div class="node"><b>KEF</b><span>11:10 到</span></div><span class="arr">→</span><div class="node"><b>CPH / PEK</b><span>2/11 回程</span></div><span class="arr">→</span><div class="node"><b>上海 SHA</b><span>2/12 17:55</span></div></div><p><b>国际主票 ¥6,842</b> · ARN→EVE <b>¥877</b> · EVE→KEF <b>¥1,456</b></p></div></section>
-<section id="stockholm"><div class="head"><div><div class="kicker">01.30–01.31</div><h2>Stockholm · 一天怀旧</h2></div><div class="note">16:30 落地，1/31 留完整白天。住宿优先 Norrmalm / Central Station，兼顾进城和第二天去 ARN。</div></div><div class="sectionphoto"><div class="cover"><img src="https://images.unsplash.com/photo-1767077272523-011302fee350?auto=format&fit=crop&fm=jpg&q=78&w=1400"></div><div class="copy"><div class="kicker" style="color:#9fdae6">City reset</div><h3>Gamla Stan · Norrmalm · Waterfront</h3><p>不追求全部景点，重点是十年后重访旧城、河岸和自己记得的地方。</p></div></div></section>
-<section id="lofoten"><div class="head"><div><div class="kicker">02.01–02.05</div><h2>Lofoten · 三天核心自驾</h2></div><div class="note">2/1 EVE 取车，2/4 晚 EVE 还车并住机场附近。冬季最大原则：不在赶飞机当天做长距离冰雪驾驶。</div></div>
-<div class="schematic"><div class="maprow"><div class="mappt"><div class="dot"></div><b>EVE</b><small>机场取车</small></div><div class="road"></div><div class="mappt hotel"><div class="dot"></div><b>Svolvær</b><small>2/1 住</small></div><div class="road"></div><div class="mappt"><div class="dot"></div><b>Henningsvær</b><small>2/2</small></div><div class="road"></div><div class="mappt hotel"><div class="dot"></div><b>Leknes</b><small>2/2 住</small></div><div class="road"></div><div class="mappt"><div class="dot"></div><b>Reine / Å</b><small>2/3</small></div><div class="road"></div><div class="mappt hotel"><div class="dot"></div><b>EVE</b><small>2/4 还车住</small></div></div></div>
-<div class="daylist">
-<article class="day"><div class="daytop"><div class="date">2/1</div><div class="title">EVE → Svolvær｜进入群岛</div><div class="tag">转场</div></div><div class="body"><div class="route"><span class="stop">EVE 取车</span><span class="route-arrow">→</span><span class="stop">E10</span><span class="route-arrow">→</span><span class="stop hotel">Svolvær 住宿</span></div><div class="cols"><ul><li>14:30 抵达 EVE，取车后直接进入罗弗敦。</li><li>当天不塞景点，只采购、吃饭、熟悉雪地驾驶。</li></ul><div class="facts"><div class="fact"><b>驾驶</b><span>正常约 2.5h，冬季按 3h 预留</span></div><div class="fact"><b>住宿</b><span>Svolvær 市区 / 港口</span></div></div></div></div></article>
-<article class="day"><div class="daytop"><div class="date">2/2</div><div class="title">Svolvær → Leknes｜渔村与海滩</div><div class="tag">Day 1</div></div><div class="body"><div class="route"><span class="stop">Svolvær</span><span class="route-arrow">→</span><span class="stop">Henningsvær</span><span class="route-arrow">→</span><span class="stop">Gimsøy</span><span class="route-arrow">→</span><span class="stop">Haukland</span><span class="route-arrow">→</span><span class="stop">Uttakleiv</span><span class="route-arrow">→</span><span class="stop hotel">Leknes / Ballstad</span></div><div class="cols"><ul><li>第一天控制驾驶量，先建立冬季路感。</li><li>重点看渔村、沙滩、雪山与北大西洋。</li></ul><div class="facts"><div class="fact"><b>驾驶</b><span>约 2–2.5h 分段</span></div><div class="fact"><b>住宿</b><span>Leknes / Ballstad，适合 Airbnb</span></div><div class="fact"><b>可选</b><span class="paid">Trollfjord / 海鹰 Safari</span></div></div></div></div></article>
-<article class="day"><div class="daytop"><div class="date">2/3</div><div class="title">Leknes → Reine / Å｜视觉高潮</div><div class="tag">Day 2</div></div><div class="body"><div class="route"><span class="stop">Leknes</span><span class="route-arrow">→</span><span class="stop">Nusfjord</span><span class="route-arrow">→</span><span class="stop">Ramberg</span><span class="route-arrow">→</span><span class="stop">Hamnøy</span><span class="route-arrow">→</span><span class="stop">Reine</span><span class="route-arrow">→</span><span class="stop">Å</span><span class="route-arrow">→</span><span class="stop hotel">Reine / Hamnøy</span></div><div class="cols"><ul><li>Nusfjord、Ramberg、Hamnøy、Reine、Å 一次串起。</li><li>不排大型付费活动，把好天气留给自然景观。</li></ul><div class="facts"><div class="fact"><b>驾驶</b><span>约 2.5–3h，走走停停</span></div><div class="fact"><b>住宿</b><span>Reine / Hamnøy，建议景观 Cabin</span></div></div></div></div></article>
-<article class="day"><div class="daytop"><div class="date">2/4</div><div class="title">西部补漏 → EVE｜边玩边撤</div><div class="tag">Day 3 + 转场</div></div><div class="body"><div class="route"><span class="stop">Reine / Å</span><span class="route-arrow">→</span><span class="stop">补漏点</span><span class="route-arrow">→</span><span class="stop">Svolvær 方向</span><span class="route-arrow">→</span><span class="stop hotel">EVE 附近</span></div><div class="cols"><ul><li>上午继续 Reine / Hamnøy；中午前后开始东撤。</li><li>天气稳定就沿途补点，天气差则更早撤。</li><li>2/4 晚必须住 EVE 附近，避免凌晨开冰雪路赶 06:00 航班。</li></ul><div class="facts"><div class="fact"><b>驾驶</b><span>西部 → EVE 按约 5h 心理预期</span></div><div class="fact"><b>还车</b><span>EVE 同点还车</span></div></div></div></div></article>
-</div></section>
-<section id="iceland"><div class="head"><div><div class="kicker">02.05–02.11</div><h2>Iceland · 南岸与冰川 5 天</h2></div><div class="note">2/5 11:10 抵达 KEF，机场取 AWD SUV。专注 Golden Circle + South Coast + Skaftafell + Jökulsárlón，不做冬季环岛。</div></div>
-<div class="sectionphoto"><div class="cover"><img src="https://images.unsplash.com/photo-1723328367210-7a52ac7e2dce?auto=format&fit=crop&fm=jpg&q=78&w=1400"></div><div class="copy"><div class="kicker" style="color:#9fdae6">South Iceland</div><h3>Golden Circle → Vík → Glacier Lagoon</h3><p>冰岛不是顺便打卡，而是一段接近 6 天的南岸路线；真正值得花钱的项目留给冰川 / 冰洞。</p></div></div>
-<div class="schematic"><div class="maprow"><div class="mappt"><div class="dot"></div><b>KEF</b><small>2/5 取车</small></div><div class="road"></div><div class="mappt hotel"><div class="dot"></div><b>Hella</b><small>2/5–6</small></div><div class="road"></div><div class="mappt"><div class="dot"></div><b>Vík</b><small>2/7</small></div><div class="road"></div><div class="mappt hotel"><div class="dot"></div><b>Skaftafell</b><small>2/8</small></div><div class="road"></div><div class="mappt"><div class="dot"></div><b>Jökulsárlón</b><small>2/9</small></div><div class="road"></div><div class="mappt hotel"><div class="dot"></div><b>Keflavík</b><small>2/10</small></div></div></div>
-<div class="daylist">
-<article class="day"><div class="daytop"><div class="date">2/5</div><div class="title">KEF → Hella｜落地即开始</div><div class="tag">半天</div></div><div class="body"><div class="route"><span class="stop">KEF 11:10</span><span class="route-arrow">→</span><span class="stop paid">Blue Lagoon 可选</span><span class="route-arrow">→</span><span class="stop">Selfoss</span><span class="route-arrow">→</span><span class="stop hotel">Hella</span></div><div class="facts"><div class="fact"><b>租车</b><span>KEF 机场取 AWD SUV；2/11 同点还车</span></div><div class="fact"><b>住宿</b><span>Selfoss / Hella</span></div></div></div></article>
-<article class="day"><div class="daytop"><div class="date">2/6</div><div class="title">Golden Circle｜裂谷 · 间歇泉 · 黄金瀑布</div><div class="tag">Day 1</div></div><div class="body"><div class="route"><span class="stop">Hella</span><span class="route-arrow">→</span><span class="stop">Þingvellir</span><span class="route-arrow">→</span><span class="stop">Geysir</span><span class="route-arrow">→</span><span class="stop">Gullfoss</span><span class="route-arrow">→</span><span class="stop hotel">Hella / Hvolsvöllur</span></div><div class="facts"><div class="fact"><b>驾驶</b><span>约 3–4h 分段</span></div><div class="fact"><b>可选</b><span>Secret Lagoon / Fontana</span></div></div></div></article>
-<article class="day"><div class="daytop"><div class="date">2/7</div><div class="title">South Coast｜瀑布到黑沙滩</div><div class="tag">Day 2</div></div><div class="body"><div class="route"><span class="stop">Seljalandsfoss</span><span class="route-arrow">→</span><span class="stop">Skógafoss</span><span class="route-arrow">→</span><span class="stop">Dyrhólaey</span><span class="route-arrow">→</span><span class="stop">Reynisfjara</span><span class="route-arrow">→</span><span class="stop hotel">Vík</span></div><div class="facts"><div class="fact"><b>住宿</b><span>Vík</span></div><div class="fact"><b>重点</b><span>黑沙滩必须听从现场海浪警示</span></div></div></div></article>
-<article class="day"><div class="daytop"><div class="date">2/8</div><div class="title">Vík → Skaftafell｜冰川体验日</div><div class="tag">Day 3</div></div><div class="body"><div class="route"><span class="stop">Vík</span><span class="route-arrow">→</span><span class="stop paid">冰川徒步 / 蓝冰洞</span><span class="route-arrow">→</span><span class="stop hotel">Skaftafell / Hnappavellir</span></div><div class="facts"><div class="fact"><b>强推</b><span>全程最值得付费的项目：冰川徒步 / 蓝冰洞</span></div><div class="fact"><b>住宿</b><span>Skaftafell / Hnappavellir / Kirkjubæjarklaustur</span></div></div></div></article>
-<article class="day"><div class="daytop"><div class="date">2/9</div><div class="title">冰河湖高潮 → 主动返西</div><div class="tag">Day 4</div></div><div class="body"><div class="route"><span class="stop">Jökulsárlón</span><span class="route-arrow">→</span><span class="stop">Diamond Beach</span><span class="route-arrow">→</span><span class="stop">Fjallsárlón 可选</span><span class="route-arrow">→</span><span class="stop hotel">Vík / 教堂镇</span></div><div class="facts"><div class="fact"><b>策略</b><span>下午开始往西返，为最后两天留余量</span></div></div></div></article>
-<article class="day"><div class="daytop"><div class="date">2/10</div><div class="title">天气 Buffer → Reykjavík / KEF</div><div class="tag">Day 5</div></div><div class="body"><div class="route"><span class="stop">南岸补漏</span><span class="route-arrow">→</span><span class="stop paid">Sky Lagoon 可选</span><span class="route-arrow">→</span><span class="stop hotel">Keflavík / KEF</span></div><div class="facts"><div class="fact"><b>作用</b><span>用于暴风、封路、冰川活动取消等情况的恢复</span></div><div class="fact"><b>住宿</b><span>最后一晚直接住机场附近</span></div></div></div></article>
-<article class="day"><div class="daytop"><div class="date">2/11</div><div class="title">KEF 还车 → 回国</div><div class="tag">返程</div></div><div class="body"><div class="route"><span class="stop">加油 / 还车</span><span class="route-arrow">→</span><span class="stop">KEF 13:45</span><span class="route-arrow">→</span><span class="stop">CPH / PEK</span><span class="route-arrow">→</span><span class="stop hotel">2/12 17:55 上海</span></div></div></article>
-</div></section>
-<section id="stay"><div class="head"><div><div class="kicker">Stay strategy</div><h2>住宿区域怎么选</h2></div><div class="note">4–8 人优先 Airbnb / Cabin；2 人时 Hotel / Guesthouse 往往更省心。重点是先锁区域，不急着锁具体酒店。</div></div><div class="stay"><div class="card"><h3>Stockholm</h3><p><b>Norrmalm / Central Station</b>：进城和去 ARN 都最省事。</p></div><div class="card"><h3>Lofoten</h3><p><b>Svolvær → Leknes/Ballstad → Reine/Hamnøy → EVE</b>。Reine/Hamnøy 那晚值得升级景观 Cabin。</p></div><div class="card"><h3>Iceland</h3><p><b>Hella → Vík → 冰川区 → Vík/教堂镇 → Keflavík</b>，通过换宿减少回头路。</p></div></div></section>
-<div class="foot"><p><b>版本：</b>V Final · 2026-09-20 规划稿。冬季天气、道路、航班和活动可能变化，出发前需再次核对。</p><p>图片：Unsplash 免费授权图片；页面仅用于同行旅行规划。</p></div>
-</main><button class="share" id="shareBtn">分享行程</button>
-<script>document.getElementById('shareBtn').onclick=async()=>{const p={title:document.title,text:'2027 春节北欧旅行计划：Stockholm · Lofoten · Iceland',url:location.href};if(navigator.share){try{await navigator.share(p)}catch(e){}}else{try{await navigator.clipboard.writeText(location.href);const b=document.getElementById('shareBtn');b.textContent='链接已复制';setTimeout(()=>b.textContent='分享行程',1500)}catch(e){}}}</script>
-</body></html>
+<section>
+  <div class="section-head">
+    <div><div class="eyebrow">Overview</div><h2>14 天，一条主线</h2></div>
+    <p>1/30 出发，2/12 回上海。Stockholm 一天，Lofoten 冬季核心自驾，Iceland 南岸 + 冰川。</p>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="label">总行程</div><div class="value">14 天</div><div class="desc">1/30 — 2/12</div></div>
+    <div class="stat"><div class="label">已确定机票</div><div class="value">¥9,175</div><div class="desc">含随身 + 托运行李</div></div>
+    <div class="stat"><div class="label">预计总预算</div><div class="value">≈ ¥25k</div><div class="desc">人均舒适型预算</div></div>
+    <div class="stat"><div class="label">核心自然段</div><div class="value">3 + 5</div><div class="desc">Lofoten + Iceland</div></div>
+  </div>
+
+  <div class="summary-grid">
+    <div class="card">
+      <div class="kicker">Major transport</div>
+      <div class="flight-route" style="margin-top:10px">
+        <div class="flight-node"><b>SHA</b><small>1/30</small></div><div class="flight-arrow">→</div>
+        <div class="flight-node"><b>ARN</b><small>16:30</small></div><div class="flight-arrow">→</div>
+        <div class="flight-node"><b>EVE</b><small>2/1 14:30</small></div><div class="flight-arrow">→</div>
+        <div class="flight-node"><b>KEF</b><small>2/5 11:10</small></div><div class="flight-arrow">→</div>
+        <div class="flight-node"><b>SHA</b><small>2/12 17:55</small></div>
+      </div>
+      <div class="budget">
+        <div class="budget-row"><span>国际主票</span><div class="track"><div class="fill" style="width:100%"></div></div><b>¥6,842</b></div>
+        <div class="budget-row"><span>ARN → EVE</span><div class="track"><div class="fill" style="width:32%"></div></div><b>¥877</b></div>
+        <div class="budget-row"><span>EVE → KEF</span><div class="track"><div class="fill" style="width:46%"></div></div><b>¥1,456</b></div>
+      </div>
+    </div>
+    <div class="card focus">
+      <div>
+        <div class="kicker">Travel focus</div>
+        <div class="big" style="margin-top:10px">Lofoten 雪山海岸<br>Iceland 冰川南岸</div>
+      </div>
+      <div class="small">多人同行优先 Airbnb / Cabin；2 人时 Hotel / Guesthouse 更省事。</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head">
+    <div><div class="eyebrow">Interactive itinerary</div><h2>把每天放到同一张地图里</h2></div>
+    <p>先选区域，再切天数。路线、景点、住宿点与机场会同步变化。</p>
+  </div>
+
+  <div class="map-shell">
+    <div class="toolbar">
+      <div class="tabs" id="regionTabs"></div>
+      <div class="day-tabs" id="dayTabs"></div>
+    </div>
+    <div class="map-wrap">
+      <svg id="routeMap" viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid meet" aria-label="行程路线图">
+        <defs>
+          <radialGradient id="bgGlow" cx="50%" cy="50%" r="65%">
+            <stop offset="0%" stop-color="#16455b"/>
+            <stop offset="100%" stop-color="#09202e"/>
+          </radialGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <rect width="1000" height="620" fill="url(#bgGlow)"/>
+        <g class="grid-lines" id="gridLines"></g>
+        <g id="mapContent"></g>
+      </svg>
+      <div class="map-card" id="mapCard"></div>
+    </div>
+  </div>
+
+  <div class="detail-grid">
+    <div class="detail-card">
+      <div class="kicker">Route</div>
+      <h3 id="detailTitle" style="font-size:24px;margin:5px 0 0"></h3>
+      <div class="route-pills" id="routePills"></div>
+      <ul class="detail-list" id="detailList"></ul>
+    </div>
+    <div class="detail-card">
+      <div class="kicker">Stay & activities</div>
+      <div id="stayBox" style="font-size:13px;color:#38515d;margin-top:10px"></div>
+    </div>
+  </div>
+
+  <div class="photo-row" id="photoRow"></div>
+</section>
+
+<section>
+  <div class="section-head">
+    <div><div class="eyebrow">Tips</div><h2>真正影响体验的几件事</h2></div>
+    <p>冬季行程留足弹性，比塞满景点更重要。</p>
+  </div>
+  <div class="tips">
+    <div class="tip"><b>❄️ 冬季自驾</b><p>Lofoten 2/4 必须提前向 EVE 撤；Iceland 2/10 保留天气 Buffer。</p></div>
+    <div class="tip"><b>🚙 租车</b><p>EVE 与 KEF 均机场取还。建议 AWD SUV，确认冬胎 / 钉胎及砂石、玻璃与道路救援范围。</p></div>
+    <div class="tip"><b>🧳 行李</b><p>大交通已按随身 + 托运行李筛选。后续替换欧洲内部票继续用同一口径。</p></div>
+    <div class="tip"><b>🏠 住宿</b><p>4–8 人优先 Airbnb / Cabin；Reine / Hamnøy 那晚值得升级景观房。</p></div>
+    <div class="tip"><b>🧊 付费活动</b><p>优先冰川徒步 / 蓝冰洞；温泉二选一。罗弗敦 Safari 看天气与体力再决定。</p></div>
+    <div class="tip"><b>🌌 极光</b><p>两段都有机会。自驾可以灵活追光，但不要为追光进入危险冬季道路。</p></div>
+  </div>
+</section>
+
+<footer>V Final · 2026-09-20。路线图为按真实经纬度绘制的旅行示意，不替代导航。冬季道路、天气、航班和活动开放情况需在出发前再次核对。</footer>
+</main>
+
+<script>
+const COLORS={city:'#5ab3cf',sight:'#d57d5e',hotel:'#d8b261',airport:'#ffffff',paid:'#9181c0'};
+const TYPE={city:'城市',sight:'景点',hotel:'住宿',airport:'机场',paid:'付费活动'};
+
+const DATA={
+stockholm:{
+ label:'Stockholm',
+ photos:[
+  ['https://images.unsplash.com/photo-1767077272523-011302fee350?auto=format&fit=crop&fm=jpg&q=78&w=1400','Stockholm winter'],
+  ['https://images.unsplash.com/photo-1508189860359-777d945909ef?auto=format&fit=crop&fm=jpg&q=78&w=1400','Gamla Stan'],
+  ['https://images.unsplash.com/photo-1509356843151-3e7d96241e11?auto=format&fit=crop&fm=jpg&q=78&w=1400','Waterfront']
+ ],
+ days:{
+  all:{label:'全部',title:'Stockholm · 一天怀旧',meta:'1/30 16:30 抵达 · 2/1 09:10 离开',route:['ARN','Norrmalm','City Hall','Gamla Stan','Strandvägen / Djurgården'],stay:'Norrmalm / Central Station',activities:['Vasa Museum 可选付费'],notes:['1/30 晚上只安排晚餐和河岸散步。','1/31 留一整天，重点重访老城、河岸和自己有记忆的区域。'],points:[
+   ['ARN',59.6519,17.9186,'airport'],['Norrmalm',59.3346,18.0632,'hotel'],['City Hall',59.3275,18.0543,'sight'],['Gamla Stan',59.325,18.071,'sight'],['Strandvägen',59.333,18.096,'sight'],['Vasa Museum',59.328,18.091,'paid']
+  ]},
+  d1:{label:'1/31',title:'Stockholm · 怀旧日',meta:'老城 + 河岸 + 可选博物馆',route:['Norrmalm','City Hall','Gamla Stan','Strandvägen','Vasa Museum'],stay:'Norrmalm / Central Station',activities:['Vasa Museum 可选付费'],notes:['步行 + 地铁即可。','如果只想怀旧，可减少博物馆，把时间留给街区和咖啡馆。'],points:[
+   ['Norrmalm',59.3346,18.0632,'hotel'],['City Hall',59.3275,18.0543,'sight'],['Gamla Stan',59.325,18.071,'sight'],['Strandvägen',59.333,18.096,'sight'],['Vasa Museum',59.328,18.091,'paid']
+  ]}
+ }
+},
+lofoten:{
+ label:'Lofoten',
+ photos:[
+  ['https://images.unsplash.com/photo-1593378026483-2a1fd46a35bd?auto=format&fit=crop&fm=jpg&q=82&w=1400','Lofoten winter'],
+  ['https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?auto=format&fit=crop&fm=jpg&q=78&w=1400','Reine / Hamnøy'],
+  ['https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&fm=jpg&q=78&w=1400','Arctic coast']
+ ],
+ days:{
+  all:{label:'全部',title:'Lofoten · 从 EVE 进入，向西深入，再安全撤回',meta:'2/1–2/5 · EVE 机场取还车',route:['EVE','Svolvær','Henningsvær','Haukland / Uttakleiv','Leknes','Nusfjord','Ramberg','Hamnøy / Reine / Å','EVE'],stay:'Svolvær → Leknes/Ballstad → Reine/Hamnøy → EVE',activities:['Trollfjord / 海鹰 Safari 可选','极光自由追'],notes:['2/1 抵达后不安排硬景点。','2/4 下午必须向 EVE 撤，晚上住机场附近。'],points:[
+   ['EVE',68.491,16.678,'airport'],['Svolvær',68.234,14.568,'hotel'],['Henningsvær',68.153,14.201,'sight'],['Haukland',68.203,13.526,'sight'],['Uttakleiv',68.209,13.503,'sight'],['Leknes',68.148,13.611,'hotel'],['Nusfjord',68.034,13.349,'sight'],['Ramberg',68.089,13.231,'sight'],['Hamnøy',67.946,13.135,'sight'],['Reine',67.932,13.089,'hotel'],['Å',67.880,12.980,'sight']
+  ]},
+  d1:{label:'2/1',title:'进入罗弗敦 · EVE → Svolvær',meta:'14:30 到 EVE · 冬季按约 3h 驾驶',route:['EVE 机场取车','E10','Svolvær'],stay:'Svolvær 市区 / 港口周边',activities:['无必须付费项目'],notes:['只做取车、采购、晚餐和适应雪地驾驶。','天气好可在港口附近顺便看极光。'],points:[['EVE',68.491,16.678,'airport'],['Svolvær',68.234,14.568,'hotel']]},
+  d2:{label:'2/2',title:'东部 → 中部 · 渔村与海滩',meta:'约 2–2.5h 分段驾驶',route:['Svolvær','Henningsvær','Gimsøy','Haukland','Uttakleiv','Leknes / Ballstad'],stay:'Leknes / Ballstad',activities:['Trollfjord / 海鹰 Safari 可选'],notes:['上午慢逛 Henningsvær。','下午转向海滩线，雪山与北大西洋是这天主角。'],points:[['Svolvær',68.234,14.568,'city'],['Henningsvær',68.153,14.201,'sight'],['Gimsøy',68.303,14.215,'sight'],['Haukland',68.203,13.526,'sight'],['Uttakleiv',68.209,13.503,'sight'],['Leknes',68.148,13.611,'hotel']]},
+  d3:{label:'2/3',title:'中部 → 西部 · 视觉高潮',meta:'约 2.5–3h 纯驾驶',route:['Leknes','Nusfjord','Ramberg / Skagsanden','Hamnøy','Reine','Å'],stay:'Reine / Hamnøy · 建议景观 Cabin',activities:['无必须付费项目'],notes:['自然景观优先，不塞大型活动。','Reine / Hamnøy 留足时间，住宿也值得升级。'],points:[['Leknes',68.148,13.611,'city'],['Nusfjord',68.034,13.349,'sight'],['Ramberg',68.089,13.231,'sight'],['Hamnøy',67.946,13.135,'sight'],['Reine',67.932,13.089,'hotel'],['Å',67.880,12.980,'sight']]},
+  d4:{label:'2/4',title:'西部补漏 → EVE · 安全撤离',meta:'上午继续玩 · 中午前后开始返东',route:['Reine / Å','沿途补漏','Svolvær 方向','EVE'],stay:'EVE / Evenes 机场附近',activities:['无'],notes:['天气好可补一个此前错过的点。','西部到 EVE 按约 5h 心理预期，晚上必须住机场附近。'],points:[['Reine',67.932,13.089,'city'],['Svolvær',68.234,14.568,'sight'],['EVE',68.491,16.678,'hotel']]}
+ }
+},
+iceland:{
+ label:'Iceland',
+ photos:[
+  ['https://images.unsplash.com/photo-1680346129364-d12dabff7214?auto=format&fit=crop&fm=jpg&q=82&w=1400','South Iceland'],
+  ['https://images.unsplash.com/photo-1723328367210-7a52ac7e2dce?auto=format&fit=crop&fm=jpg&q=78&w=1400','Reynisfjara'],
+  ['https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&fm=jpg&q=78&w=1400','Glacier landscape']
+ ],
+ days:{
+  all:{label:'全部',title:'Iceland · Golden Circle + South Coast + Glacier Lagoon',meta:'2/5–2/11 · KEF 机场取还车',route:['KEF','Hella','Golden Circle','Vík','Skaftafell','Jökulsárlón','Vík / 教堂镇','Reykjavík / Keflavík'],stay:'Hella → Hella/Hvolsvöllur → Vík → 冰川区 → Vík/教堂镇 → Keflavík',activities:['Blue Lagoon 可选','冰川徒步 / 蓝冰洞强推','Sky Lagoon 可选'],notes:['不环岛，专注南岸。','2/10 故意留作天气 Buffer。'],points:[
+   ['KEF',63.985,-22.605,'airport'],['Blue Lagoon',63.880,-22.449,'paid'],['Hella',63.835,-20.400,'hotel'],['Þingvellir',64.255,-21.130,'sight'],['Geysir',64.310,-20.300,'sight'],['Gullfoss',64.327,-20.120,'sight'],['Seljalandsfoss',63.615,-19.989,'sight'],['Skógafoss',63.532,-19.511,'sight'],['Reynisfjara',63.404,-19.044,'sight'],['Vík',63.419,-19.006,'hotel'],['Skaftafell',64.017,-16.966,'paid'],['Jökulsárlón',64.048,-16.179,'sight'],['Diamond Beach',64.044,-16.177,'sight'],['Reykjavík',64.146,-21.940,'city'],['Keflavík',64.000,-22.560,'hotel']
+  ]},
+  d1:{label:'2/5',title:'落地即开始 · KEF → Hella',meta:'11:10 到 KEF · 半天',route:['KEF 机场取车','Blue Lagoon 可选','Selfoss','Hella'],stay:'Selfoss / Hella',activities:['Blue Lagoon 可选付费'],notes:['机场直接取 AWD SUV。','若不泡温泉就直接往东铺路。'],points:[['KEF',63.985,-22.605,'airport'],['Blue Lagoon',63.880,-22.449,'paid'],['Selfoss',63.933,-20.997,'sight'],['Hella',63.835,-20.400,'hotel']]},
+  d2:{label:'2/6',title:'Golden Circle · 地热与瀑布',meta:'约 3–4h 分段驾驶',route:['Hella','Þingvellir','Geysir / Strokkur','Gullfoss','Hella / Hvolsvöllur'],stay:'Hella / Hvolsvöllur',activities:['Secret Lagoon / Fontana 可选'],notes:['黄金圈三件套。','不加雪地摩托，把付费预算留给冰川。'],points:[['Hella',63.835,-20.400,'city'],['Þingvellir',64.255,-21.130,'sight'],['Geysir',64.310,-20.300,'sight'],['Gullfoss',64.327,-20.120,'sight'],['Hella',63.835,-20.400,'hotel']]},
+  d3:{label:'2/7',title:'South Coast · 瀑布到黑沙滩',meta:'约 3h 分散驾驶',route:['Hella','Seljalandsfoss','Skógafoss','Dyrhólaey','Reynisfjara','Vík'],stay:'Vík',activities:['自然景点为主'],notes:['Reynisfjara 严格遵守海浪警示。','晚上住 Vík，第二天进入冰川区。'],points:[['Hella',63.835,-20.400,'city'],['Seljalandsfoss',63.615,-19.989,'sight'],['Skógafoss',63.532,-19.511,'sight'],['Dyrhólaey',63.401,-19.131,'sight'],['Reynisfjara',63.404,-19.044,'sight'],['Vík',63.419,-19.006,'hotel']]},
+  d4:{label:'2/8',title:'冰川体验日 · Vík → Skaftafell',meta:'Vík → Skaftafell 约 2h+',route:['Vík','Skaftafell','Hnappavellir / 教堂镇'],stay:'Skaftafell / Hnappavellir / Kirkjubæjarklaustur',activities:['冰川徒步 / 蓝冰洞强推'],notes:['这趟最值得花钱的大项目放在这天。','不要继续冲 Höfn，控制驾驶压力。'],points:[['Vík',63.419,-19.006,'city'],['Skaftafell',64.017,-16.966,'paid'],['Hnappavellir',63.993,-16.620,'hotel']]},
+  d5:{label:'2/9',title:'冰河湖高潮 → 往西返',meta:'当天较长，重点是主动返西',route:['Jökulsárlón','Diamond Beach','Fjallsárlón 可选','Kirkjubæjarklaustur / Vík'],stay:'Vík / Kirkjubæjarklaustur',activities:['核心景点免费为主'],notes:['Jökulsárlón + Diamond Beach 是最高优先级组合。','若天气差，可顺延到 2/10。'],points:[['Jökulsárlón',64.048,-16.179,'sight'],['Diamond Beach',64.044,-16.177,'sight'],['Fjallsárlón',64.018,-16.372,'sight'],['Kirkjubæjarklaustur',63.791,-18.056,'hotel'],['Vík',63.419,-19.006,'hotel']]},
+  d6:{label:'2/10',title:'天气 Buffer → Reykjavík / KEF',meta:'机动日',route:['南岸','补漏 / 天气恢复','Reykjavík / Sky Lagoon','Keflavík'],stay:'Keflavík / KEF 附近',activities:['Sky Lagoon 可选付费'],notes:['前面遇到暴风、封路或冰川活动取消，都可用这天修复。','最后一晚住机场附近。'],points:[['Vík',63.419,-19.006,'city'],['Reykjavík',64.146,-21.940,'paid'],['Keflavík',64.000,-22.560,'hotel']]}
+ }
+}
+};
+
+const svg=document.getElementById('routeMap'), content=document.getElementById('mapContent'), grid=document.getElementById('gridLines');
+for(let x=80;x<1000;x+=80){const l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',x);l.setAttribute('y1',0);l.setAttribute('x2',x);l.setAttribute('y2',620);grid.appendChild(l)}
+for(let y=60;y<620;y+=60){const l=document.createElementNS('http://www.w3.org/2000/svg','line');l.setAttribute('x1',0);l.setAttribute('y1',y);l.setAttribute('x2',1000);l.setAttribute('y2',y);grid.appendChild(l)}
+
+let region='lofoten', day='all';
+function bounds(points){
+ const lats=points.map(p=>p[1]), lons=points.map(p=>p[2]);
+ let minLat=Math.min(...lats),maxLat=Math.max(...lats),minLon=Math.min(...lons),maxLon=Math.max(...lons);
+ const latPad=Math.max((maxLat-minLat)*.35,.12), lonPad=Math.max((maxLon-minLon)*.28,.25);
+ return {minLat:minLat-latPad,maxLat:maxLat+latPad,minLon:minLon-lonPad,maxLon:maxLon+lonPad}
+}
+function project(lat,lon,b){
+ const pad=80, W=1000,H=620;
+ const x=pad+(lon-b.minLon)/(b.maxLon-b.minLon)*(W-2*pad);
+ const y=pad+(b.maxLat-lat)/(b.maxLat-b.minLat)*(H-2*pad);
+ return [x,y]
+}
+function routeD(pts,b){
+ return pts.map((p,i)=>{const [x,y]=project(p[1],p[2],b);return `${i?'L':'M'}${x.toFixed(1)},${y.toFixed(1)}`}).join(' ')
+}
+function renderTabs(){
+ const rt=document.getElementById('regionTabs'), dt=document.getElementById('dayTabs'); rt.innerHTML='';dt.innerHTML='';
+ Object.entries(DATA).forEach(([k,v])=>{const b=document.createElement('button');b.className='tab'+(k===region?' active':'');b.textContent=v.label;b.onclick=()=>{region=k;day='all';render(true)};rt.appendChild(b)});
+ Object.entries(DATA[region].days).forEach(([k,v])=>{const b=document.createElement('button');b.className='day-tab'+(k===day?' active':'');b.textContent=v.label;b.onclick=()=>{day=k;render(true)};dt.appendChild(b)});
+}
+function renderMap(){
+ content.innerHTML='';
+ const d=DATA[region].days[day], b=bounds(d.points);
+ const path=document.createElementNS('http://www.w3.org/2000/svg','path');path.setAttribute('d',routeD(d.points,b));path.setAttribute('class','route-path anim');content.appendChild(path);
+ d.points.forEach((p,i)=>{
+   const [x,y]=project(p[1],p[2],b), type=p[3]||'sight';
+   const g=document.createElementNS('http://www.w3.org/2000/svg','g');g.setAttribute('class','marker');
+   const c=document.createElementNS('http://www.w3.org/2000/svg','circle');c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',type==='hotel'||type==='airport'?10:8);c.setAttribute('fill',COLORS[type]);c.setAttribute('stroke','#fff');c.setAttribute('stroke-width','3');c.setAttribute('filter','url(#glow)');
+   const t=document.createElementNS('http://www.w3.org/2000/svg','text');t.setAttribute('x',x+14);t.setAttribute('y',y-7);t.setAttribute('class','map-label');t.textContent=p[0];
+   const s=document.createElementNS('http://www.w3.org/2000/svg','text');s.setAttribute('x',x+14);s.setAttribute('y',y+8);s.setAttribute('class','map-sub');s.textContent=TYPE[type];
+   g.appendChild(c);g.appendChild(t);g.appendChild(s);content.appendChild(g);
+ });
+}
+function renderText(){
+ const d=DATA[region].days[day];
+ document.getElementById('mapCard').innerHTML=`<div class="title">${d.title}</div><div class="meta">${d.meta}</div><div class="legend"><span>● 景点</span><span>● 住宿</span><span>● 机场</span><span>● 付费活动</span></div>`;
+ document.getElementById('detailTitle').textContent=d.title;
+ document.getElementById('routePills').innerHTML=d.route.map((x,i)=>`<span>${i+1}. ${x}</span>`).join('');
+ document.getElementById('detailList').innerHTML=d.notes.map(x=>`<li>${x}</li>`).join('');
+ document.getElementById('stayBox').innerHTML=`<p><span class="badge">住宿</span>${d.stay}</p><p><span class="badge paid">活动</span>${d.activities.join(' / ')}</p>`;
+ document.getElementById('photoRow').innerHTML=DATA[region].photos.map(([u,c])=>`<div class="photo"><img src="${u}" alt="${c}"><span>${c}</span></div>`).join('');
+}
+function render(){renderTabs();content.style.opacity=0;setTimeout(()=>{renderMap();renderText();content.style.transition='opacity .28s ease';content.style.opacity=1},120)}
+render();
+</script>
+</body>
+</html>
