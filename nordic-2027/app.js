@@ -68,16 +68,8 @@
   function renderStatic() {
     $('full-itinerary').innerHTML = trip.days.map(d=>`<div class="schedule-row"><time datetime="${d.date}">${shortDate(d.date)}</time>${d.region==='return'?`<span>${esc(d.title)}</span>`:`<button type="button" data-jump="${d.region}/${d.date}">${esc(d.title)} ↗</button>`}<span class="stay-note">${d.number===14?'抵达':'夜宿'} · ${esc(d.stay)}</span></div>`).join('');
     $('budget-lines').innerHTML = trip.budget.map(b=>`<div class="budget-row"><span>${esc(b.name)}</span><strong>¥${money(b.low)}${b.low!==b.high?'–'+money(b.high):''}</strong></div>`).join('');
-    const groups = [
-      {title:'1月30日 · 上海 → 斯德哥尔摩',fare:'国际往返主票 ¥6,842 / 人',ids:[0,1]},
-      {title:'2月1日 · 斯德哥尔摩 → EVE',fare:'¥877 / 人 · 经奥斯陆',ids:[2,3]},
-      {title:'2月5日 · EVE → 冰岛',fare:'¥1,456 / 人 · 奥斯陆中转70分钟',ids:[4,5]},
-      {title:'2月11–12日 · 冰岛 → 上海',fare:'已包含在国际主票内',ids:[6,7,8]}
-    ];
-    $('flights').innerHTML = groups.map(g=>`<div class="flight-group"><div><h3>${g.title}</h3><p class="fare">${g.fare}</p></div><div class="flight-segments">${g.ids.map(i=>{
-      const f=trip.flights.segments[i];
-      return `<div class="flight-segment"><small>${shortDate(f.departure_date)} · ${f.flight_number}</small><strong>${f.origin} → ${f.destination}</strong><p>${f.departure_time} — ${f.arrival_time}${f.arrival_date!==f.departure_date?' <small>次日</small>':''}</p></div>`;
-    }).join('')}</div></div>`).join('');
+    $('flights').innerHTML = trip.flights.journeys.map(f=>`<div class="flight-group"><div><h3>${esc(f.title)}</h3><p class="fare">${esc(f.fare)}</p></div><div class="flight-segments"><div class="flight-segment"><small>${esc(f.duration)}</small><strong>${esc(f.route)}</strong><p>${esc(f.times)}</p><p class="small-note">${esc(f.note)}</p></div></div></div>`).join('');
+
   }
 
   // Local coastline schematic. Route segments show stop order, not road geometry.
@@ -92,7 +84,7 @@
     const scale=Math.min((w-180)/Math.max(maxX-minX,.035),(h-145)/Math.max(maxY-minY,.035));
     const project=(lng,lat)=>[w/2+(lng-cx)*scale,h/2-(mercY(lat)-cy)*scale];
     const pair=p=>project(p[0],p[1]).map(v=>v.toFixed(1)).join(',');
-    let svg=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(regionInfo().label)}当前行程地理示意图"><g id="route-art">`;
+    let svg=`<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(regionInfo().label)}当前行程地理示意图">${region==='oslo'?'<rect width="900" height="570" fill="#edf1ed"/>':''}<g id="route-art">`;
     svg += `<g fill="#f8faf7" stroke="#c3d3d8" stroke-width="1">${(window.GEOGRAPHY?.[region]||[]).map(r=>`<path d="M${r.map(pair).join('L')}Z"/>`).join('')}</g>`;
     svg += routes().features.map(f=>`<polyline points="${f.geometry.coordinates.map(pair).join(' ')}" fill="none" stroke="#2c6c85" stroke-width="3" stroke-dasharray="7 6" opacity=".8"/>`).join('');
     const occupied=[];
@@ -112,7 +104,7 @@
       }
       svg+='</g>';
     });
-    svg+='</g><text x="875" y="32" text-anchor="end" font-size="13" fill="#536975" font-family="system-ui,sans-serif">N ↑</text><text x="884" y="557" text-anchor="end" font-size="10" fill="#536975" font-family="system-ui,sans-serif">Natural Earth · 地点与路线示意</text></svg>';
+    svg+=`</g><text x="875" y="32" text-anchor="end" font-size="13" fill="#536975" font-family="system-ui,sans-serif">N ↑</text><text x="884" y="557" text-anchor="end" font-size="10" fill="#536975" font-family="system-ui,sans-serif">${region==='oslo'?'地点连线示意 · 无地形底图':'Natural Earth · 地点与路线示意'}</text></svg>`;
     $('fallback-map').innerHTML=svg;
     camera.reset();
   }
@@ -124,8 +116,8 @@
     renderTabs();renderDetail();renderFallback();experience?.update(points(),routes());
     if(writeHash)history.replaceState(null,'',`#${region}${date==='all'?'':'/'+date}`);
   }
-  const country={stockholm:'Stockholm Sweden',lofoten:'Lofoten Norway',iceland:'Iceland'};
-  const queries={'poi-001':'Stockholm Arlanda Airport Sweden','poi-007':'Harstad Narvik Airport Evenes Norway','poi-019':'Keflavik International Airport Iceland','poi-017':'Å i Lofoten Norway','poi-047':'Hov Gård Gimsøy Norway','poi-003':'Stockholm City Hall Sweden'};
+  const country={oslo:'Oslo Norway',lofoten:'Lofoten Norway',iceland:'Iceland'};
+  const queries={'poi-007':'Harstad Narvik Airport Evenes Norway','poi-019':'Keflavik International Airport Iceland','poi-017':'Å i Lofoten Norway','poi-047':'Hov Gård Gimsøy Norway'};
   const googleURL=p=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(queries[p.id]||p.name+' '+country[p.region]);
   function openPlace(id,writeHash=true){
     const p=place(id),info=window.PLACE_INFO[id];if(!p||!info)return;
@@ -166,7 +158,8 @@
     try{await navigator.clipboard.writeText(shareURL());showToast('链接已复制，发给朋友一起看。');return true;}catch(_){return false;}
   }
   $('share').addEventListener('click',async()=>{
-    if(navigator.share){try{await navigator.share({title:'2027 北欧冬日行',text:'14天，斯德哥尔摩 → 罗弗敦 → 冰岛。我们的春节旅行计划。',url:shareURL()});return;}catch(e){if(e.name==='AbortError')return;}}
+    if(location.protocol==='file:'){showToast('本地版本请发送HTML文件或网站压缩包给朋友。');return;}
+    if(navigator.share){try{await navigator.share({title:'2027 北欧冬日行',text:'14天，奥斯陆 → 罗弗敦 → 冰岛。我们的春节旅行计划。',url:shareURL()});return;}catch(e){if(e.name==='AbortError')return;}}
     if(await copyLink())return;
     $('share-link').value=shareURL();$('share-dialog').showModal();$('share-link').select();
   });

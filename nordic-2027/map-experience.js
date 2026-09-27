@@ -50,7 +50,7 @@
       this.loaded=false;
       if(!window.maplibregl){this.failed=true;this.visibility();return;}
       try{
-        this.map=new maplibregl.Map({container:'map',style:'./assets/map-style.json',center:[14,68.1],zoom:5,attributionControl:false,dragRotate:false,touchPitch:false,pitchWithRotate:false,cooperativeGestures:false});
+        this.map=new maplibregl.Map({container:'map',style:window.NORDIC_MAP_STYLE||'./assets/map-style.json',center:[14,68.1],zoom:5,attributionControl:false,dragRotate:false,touchPitch:false,pitchWithRotate:false,cooperativeGestures:false});
         this.map.touchZoomRotate.disableRotation();
         this.map.addControl(new maplibregl.AttributionControl({compact:true}),'bottom-right');
         this.map.on('load',()=>{
